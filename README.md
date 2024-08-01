@@ -58,3 +58,4 @@
 26 directories
 ```
 
+部分数据集及rknn模型文件见百度网盘: [链接](https://pan.baidu.com/s/1WRp7eV-7mwwrnDMuKwNaqw?pwd=xujg)

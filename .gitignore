@@ -1,7 +1,12 @@
 # data and model
-model/
-data/database/
-data/queries/
+model/*
+!model/
+!model/.gitkeep
+
+
+data/*
+!data/
+!data/.gitkeep
 
 
 # cpp
@@ -10,7 +15,7 @@ data/queries/
 *.so
 *.out
 cpp/build/
-.vscode/
+cpp/install/
 
 
 # python

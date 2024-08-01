@@ -1,0 +1,41 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug cpp(gdb)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/cpp/install/UAV-VisionLoc-C_Linux/UAV-VisionLoc-C",
+            "args": ["${workspaceFolder}/cpp/install/UAV-VisionLoc-C_Linux/model/uvl_731.rknn",
+                    "${workspaceFolder}/cpp/install/UAV-VisionLoc-C_Linux/model/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg",
+                    "${workspaceFolder}/cpp/install/UAV-VisionLoc-C_Linux/model/database_features.h5",
+                    ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Cpp: build with CMake",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "logging": {
+                "trace": false,
+                "traceResponse": false,
+                "engineLogging": false
+            },
+        },
+        {
+            "name": "Python: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Cpp: build with CMake",
+            "type": "shell",
+            "command": "${workspaceFolder}/cpp/build.sh",
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Generated task to build the project using CMake"
+        }
+    ]
+}
