@@ -1,0 +1,18 @@
+# data and model
+model/
+data/database/
+data/queries/
+
+
+# cpp
+*.o
+*.a
+*.so
+*.out
+cpp/build/
+.vscode/
+
+
+# python
+
+__pycache__/

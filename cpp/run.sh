@@ -1,0 +1,1 @@
+./install/UAV-VisionLoc-C_Linux/UAV-VisionLoc-C ./install/UAV-VisionLoc-C_Linux/model/uvl_731.rknn ./install/UAV-VisionLoc-C_Linux/model/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg ./install/UAV-VisionLoc-C_Linux/model/database_features.h5
