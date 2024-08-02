@@ -1,0 +1,226 @@
+cd /home/xujg/code/UAV-VisionLoc-Deploy ; /usr/bin/env /home/xujg/miniconda3/envs/vtl/bin/python /home/xujg/.vscode-server/extensions/ms-python.debugpy-2024.8.0/bundled/libs/debugpy/adapter/../../debugpy/launcher 53961 -- /home/xujg/code/UAV-VisionLoc-Deploy/python/main.py 
+W Verbose file path is invalid, debug info will not dump to file.
+--> Init runtime environment
+D target set by user is: None
+D Starting ntp or adb, target soc is RK3588, device id is: None
+I RKNN: [10:30:30.271] RKNN Runtime Information, librknnrt version: 2.0.0b0 (35a6907d79@2024-03-24T10:31:14)
+I RKNN: [10:30:30.271] RKNN Driver Information, version: 0.8.8
+I RKNN: [10:30:30.272] RKNN Model Information, version: 6, toolkit version: 2.0.0b0+9bab5682(compiler version: 2.0.0b0 (35a6907d79@2024-03-24T02:34:11)), target: RKNPU v2, target platform: rk3588, framework name: ONNX, framework layout: NCHW, model inference type: static_shape
+D RKNN: [10:30:30.272] allocated memory, name: task, virt addr: 0x7fa54c2000, dma addr: 0xffdb0000, obj addr: 0xffffff8103aeb800, size: 33200, aligned size: 36864, fd: 5, handle: 1, flags: 0xb, gem name: 1, iommu domain id: 0
+D RKNN: [10:30:30.278] allocated memory, name: weight, virt addr: 0x7f54f6c000, dma addr: 0xff7a0000, obj addr: 0xffffff8103aee400, size: 6324544, aligned size: 6328320, fd: 6, handle: 2, flags: 0x3, gem name: 2, iommu domain id: 0
+D RKNN: [10:30:30.281] subgraph0 regcmdbuffer size: 629568, taskbuffer size: 33200
+D RKNN: [10:30:30.310] allocated memory, name: internal, virt addr: 0x7f5342c000, dma addr: 0xfc020000, obj addr: 0xffffff8103aef400, size: 28573696, aligned size: 28573696, fd: 7, handle: 3, flags: 0x3, gem name: 3, iommu domain id: 0
+D RKNN: [10:30:30.315] ------------------------------------------------------------------------------------------------------------------------------------------------------
+D RKNN: [10:30:30.315]                                                   Feature Tensor Information Table                                           
+D RKNN: [10:30:30.315] --------------------------------------------------------------------------------------------------------------------+---------------------------------
+D RKNN: [10:30:30.315] ID  User            Tensor                                    DataType  DataFormat   OrigShape      NativeShape     |     [Start       End)       Size
+D RKNN: [10:30:30.315] --------------------------------------------------------------------------------------------------------------------+---------------------------------
+D RKNN: [10:30:30.315] 1   ConvRelu        input.1                                   FLOAT16   NC1HWC2      (1,3,512,512)  (1,4,512,512,3) | 0xfc020000 0xfc1a0000 0x00180000
+D RKNN: [10:30:30.315] 2   MaxPool         onnx::MaxPool_103                         FLOAT16   NC1HWC2      (1,64,256,256) (1,32,256,256,8) | 0xfc1a0000 0xfc9a0000 0x00800000
+D RKNN: [10:30:30.315] 3   ConvRelu        input.8                                   FLOAT16   NC1HWC2      (1,64,128,128) (1,32,128,128,8) | 0xfc9a0000 0xfcba0000 0x00200000
+D RKNN: [10:30:30.315] 4   ConvAddRelu     onnx::Conv_107                            FLOAT16   NC1HWC2      (1,64,128,128) (1,32,128,128,8) | 0xfc020000 0xfc220000 0x00200000
+D RKNN: [10:30:30.315] 4   ConvAddRelu     input.8                                   FLOAT16   NC1HWC2      (1,64,128,128) (1,32,128,128,8) | 0xfc9a0000 0xfcba0000 0x00200000
+D RKNN: [10:30:30.315] 5   ConvRelu        input.24                                  FLOAT16   NC1HWC2      (1,64,128,128) (1,32,128,128,8) | 0xfc220000 0xfc420000 0x00200000
+D RKNN: [10:30:30.315] 6   ConvAddRelu     onnx::Conv_114                            FLOAT16   NC1HWC2      (1,64,128,128) (1,32,128,128,8) | 0xfc020000 0xfc220000 0x00200000
+D RKNN: [10:30:30.315] 6   ConvAddRelu     input.24                                  FLOAT16   NC1HWC2      (1,64,128,128) (1,32,128,128,8) | 0xfc220000 0xfc420000 0x00200000
+D RKNN: [10:30:30.315] 7   ConvRelu        input.40                                  FLOAT16   NC1HWC2      (1,64,128,128) (1,32,128,128,8) | 0xfc420000 0xfc620000 0x00200000
+D RKNN: [10:30:30.315] 8   Conv            onnx::Conv_121                            FLOAT16   NC1HWC2      (1,128,64,64)  (1,64,64,64,8)  | 0xfc020000 0xfc120000 0x00100000
+D RKNN: [10:30:30.315] 9   ConvAddRelu     input.40                                  FLOAT16   NC1HWC2      (1,64,128,128) (1,32,128,128,8) | 0xfc420000 0xfc620000 0x00200000
+D RKNN: [10:30:30.315] 9   ConvAddRelu     onnx::Add_237                             FLOAT16   NC1HWC2      (1,128,64,64)  (1,64,64,64,8)  | 0xfc120000 0xfc220000 0x00100000
+D RKNN: [10:30:30.315] 10  ConvRelu        input.60                                  FLOAT16   NC1HWC2      (1,128,64,64)  (1,64,64,64,8)  | 0xfc020000 0xfc120000 0x00100000
+D RKNN: [10:30:30.315] 11  ConvAddRelu     onnx::Conv_130                            FLOAT16   NC1HWC2      (1,128,64,64)  (1,64,64,64,8)  | 0xfc120000 0xfc220000 0x00100000
+D RKNN: [10:30:30.315] 11  ConvAddRelu     input.60                                  FLOAT16   NC1HWC2      (1,128,64,64)  (1,64,64,64,8)  | 0xfc020000 0xfc120000 0x00100000
+D RKNN: [10:30:30.315] 12  ConvRelu        input.76                                  FLOAT16   NC1HWC2      (1,128,64,64)  (1,64,64,64,8)  | 0xfc220000 0xfc320000 0x00100000
+D RKNN: [10:30:30.315] 13  Conv            onnx::Conv_137                            FLOAT16   NC1HWC2      (1,256,32,32)  (1,128,32,32,8) | 0xfc020000 0xfc0a0000 0x00080000
+D RKNN: [10:30:30.315] 14  ConvAddRelu     input.76                                  FLOAT16   NC1HWC2      (1,128,64,64)  (1,64,64,64,8)  | 0xfc220000 0xfc320000 0x00100000
+D RKNN: [10:30:30.315] 14  ConvAddRelu     onnx::Add_252                             FLOAT16   NC1HWC2      (1,256,32,32)  (1,128,32,32,8) | 0xfc0a0000 0xfc120000 0x00080000
+D RKNN: [10:30:30.315] 15  ConvRelu        input.96                                  FLOAT16   NC1HWC2      (1,256,32,32)  (1,128,32,32,8) | 0xfc020000 0xfc0a0000 0x00080000
+D RKNN: [10:30:30.315] 16  ConvAddRelu     onnx::Conv_146                            FLOAT16   NC1HWC2      (1,256,32,32)  (1,128,32,32,8) | 0xfc0a0000 0xfc120000 0x00080000
+D RKNN: [10:30:30.315] 16  ConvAddRelu     input.96                                  FLOAT16   NC1HWC2      (1,256,32,32)  (1,128,32,32,8) | 0xfc020000 0xfc0a0000 0x00080000
+D RKNN: [10:30:30.315] 17  Conv            input.112                                 FLOAT16   NC1HWC2      (1,256,32,32)  (1,128,32,32,8) | 0xfc120000 0xfc1a0000 0x00080000
+D RKNN: [10:30:30.315] 18  LpNormalization x                                         FLOAT16   NC1HWC2      (1,64,32,32)   (1,32,32,32,8)  | 0xfc020000 0xfc040000 0x00020000
+D RKNN: [10:30:30.315] 19  Conv            input.120                                 FLOAT16   NC1HWC2      (1,64,32,32)   (1,32,32,32,8)  | 0xfc040000 0xfc060000 0x00020000
+D RKNN: [10:30:30.315] 20  Reshape         input.120                                 FLOAT16   NC1HWC2      (1,64,32,32)   (1,32,32,32,8)  | 0xfc040000 0xfc060000 0x00020000
+D RKNN: [10:30:30.315] 20  Reshape         input.120_exSecondary                     FLOAT16   NC1HWC2      (1,64,32,32)   (1,512,32,32,8) | 0xfc060000 0xfc260000 0x00200000
+D RKNN: [10:30:30.315] 21  Add             onnx::Sub_189                             FLOAT16   NC1HWC2      (1,1,64,1024)  (1,4,64,1024,8) | 0xfc260000 0xfc360000 0x00100000
+D RKNN: [10:30:30.315] 21  Add             onnx::Sub_189_exSecondary0                FLOAT16   NC1HWC2      (1,64,64,1024) (1,32,64,1024,8) | 0xfc360000 0xfcb60000 0x00800000
+D RKNN: [10:30:30.315] 21  Add             onnx::Sub_189_exSecondary                 FLOAT16   NC1HWC2      (1,64,64,1024) (1,32,64,1024,8) | 0xfcb60000 0xfd360000 0x00800000
+D RKNN: [10:30:30.315] 22  Reshape         onnx::Reshape_172                         FLOAT16   NC1HWC2      (1,64,32,32)   (1,32,32,32,8)  | 0xfc020000 0xfc040000 0x00020000
+D RKNN: [10:30:30.315] 22  Reshape         onnx::Reshape_172_exSecondary             FLOAT16   NC1HWC2      (1,64,32,32)   (1,32,32,32,8)  | 0xfc040000 0xfc060000 0x00020000
+D RKNN: [10:30:30.315] 23  exSoftmax13     soft_assign_shape4_Softmax_47             FLOAT16   NC1HWC2      (1,64,1,1024)  (1,32,1,1024,8) | 0xfc020000 0xfc040000 0x00020000
+D RKNN: [10:30:30.315] 23  exSoftmax13     soft_assign_shape4_Softmax_47_exSecondary FLOAT16   NC1HWC2      (1,64,1,1024)  (1,164,1,1024,8) | 0xfc040000 0xfc0e4800 0x000a4800
+D RKNN: [10:30:30.315] 24  Mul             onnx::Mul_190                             FLOAT16   NC1HWC2      (1,64,64,1024) (1,32,64,1024,8) | 0xfd360000*0xfdb60000 0x00800000
+D RKNN: [10:30:30.315] 24  Mul             onnx::Unsqueeze_183_shape4                FLOAT16   NC1HWC2      (1,64,1,1024)  (1,32,1,1024,8) | 0xfc0e4800 0xfc104800 0x00020000
+D RKNN: [10:30:30.315] 24  Mul             onnx::Mul_190_exSecondary                 FLOAT16   NC1HWC2      (1,64,64,1024) (1,32,64,1024,8) | 0xfc104800 0xfc904800 0x00800000
+D RKNN: [10:30:30.315] 25  ReduceSum       onnx::ReduceSum_193                       FLOAT16   NC1HWC2      (1,64,64,1024) (1,32,64,1024,8) | 0xfc904800 0xfd104800 0x00800000
+D RKNN: [10:30:30.315] 26  Transpose       vlad_shape_keep                           FLOAT16   NC1HWC2      (1,64,64,1)    (1,32,64,1,8)   | 0xfc020000 0xfc022000 0x00002000
+D RKNN: [10:30:30.315] 27  Pow             vlad_shape4_Div_60                        FLOAT16   NC1HWC2      (1,64,1,64)    (1,32,1,64,8)   | 0xfc022040 0xfc024040 0x00002000
+D RKNN: [10:30:30.315] 28  ReduceSum       vlad_shape4_Div_60_pow_2                  FLOAT16   NCHW         (1,64,1,64)    (1,64,1,64)     | 0xfc020000 0xfc022000 0x00002000
+D RKNN: [10:30:30.315] 29  Pow             vlad_shape4_Div_60_sum                    FLOAT16   NCHW         (1,64,1,1)     (1,64,1,1)      | 0xfc024040 0xfc0240c0 0x00000080
+D RKNN: [10:30:30.315] 30  Clip            onnx::Clip_196                            FLOAT16   NC1HWC2      (1,64,1,1)     (1,32,1,1,8)    | 0xfc020000 0xfc020080 0x00000080
+D RKNN: [10:30:30.315] 31  Expand          onnx::Expand_200                          FLOAT16   NC1HWC2      (1,64,1,1)     (1,32,1,1,8)    | 0xfc020080 0xfc020100 0x00000080
+D RKNN: [10:30:30.315] 32  Div             vlad_shape4_Div_60                        FLOAT16   NC1HWC2      (1,64,1,64)    (1,32,1,64,8)   | 0xfc022040 0xfc024040 0x00002000
+D RKNN: [10:30:30.315] 32  Div             onnx::Div_202                             FLOAT16   NC1HWC2      (1,64,1,64)    (1,32,1,64,8)   | 0xfc024040 0xfc026040 0x00002000
+D RKNN: [10:30:30.315] 33  Reshape         onnx::Reshape_203_shape4                  FLOAT16   NC1HWC2      (1,64,1,64)    (1,32,1,64,8)   | 0xfc020000 0xfc022000 0x00002000
+D RKNN: [10:30:30.315] 33  Reshape         onnx::Reshape_203_shape4_exSecondary      FLOAT16   NC1HWC2      (1,64,1,64)    (1,512,1,64,8)  | 0xfc022000 0xfc042000 0x00020000
+D RKNN: [10:30:30.315] 34  Pow             vlad.3_shape4_Div_66                      FLOAT16   NC1HWC2      (1,1,1,4096)   (1,4,1,4096,8)  | 0xfc042000 0xfc052000 0x00010000
+D RKNN: [10:30:30.315] 35  ReduceSum       vlad.3_shape4_Div_66_pow_2                FLOAT16   NCHW         (1,1,1,4096)   (1,1,1,4096)    | 0xfc020000 0xfc030000 0x00010000
+D RKNN: [10:30:30.315] 36  Pow             vlad.3_shape4_Div_66_sum                  FLOAT16   NCHW         (1,1,1,1)      (1,1,1,1)       | 0xfc030000 0xfc030010 0x00000010
+D RKNN: [10:30:30.315] 37  Clip            onnx::Clip_211                            FLOAT16   NC1HWC2      (1,1,1,1)      (1,4,1,1,8)     | 0xfc020000 0xfc020010 0x00000010
+D RKNN: [10:30:30.315] 38  Expand          onnx::Expand_215                          FLOAT16   NC1HWC2      (1,1,1,1)      (1,4,1,1,8)     | 0xfc020040 0xfc020050 0x00000010
+D RKNN: [10:30:30.315] 39  Div             vlad.3_shape4_Div_66                      FLOAT16   NC1HWC2      (1,1,1,4096)   (1,4,1,4096,8)  | 0xfc042000 0xfc052000 0x00010000
+D RKNN: [10:30:30.315] 39  Div             onnx::Div_217                             FLOAT16   NC1HWC2      (1,1,1,4096)   (1,16,1,4096,8) | 0xfc052000 0xfc092000 0x00040000
+D RKNN: [10:30:30.315] 40  Reshape         218_shape4                                FLOAT16   NC1HWC2      (1,1,1,4096)   (1,4,1,4096,8)  | 0xfc020000 0xfc030000 0x00010000
+D RKNN: [10:30:30.315] 41  OutputOperator  218                                       FLOAT16   UNDEFINED    (1,4096)       (1,4096)        | 0xfc030040 0xfc032040 0x00002000
+D RKNN: [10:30:30.315] --------------------------------------------------------------------------------------------------------------------+---------------------------------
+D RKNN: [10:30:30.315] -------------------------------------------------------------------------------------------------------------
+D RKNN: [10:30:30.315]                                     Const Tensor Information Table                        
+D RKNN: [10:30:30.315] ---------------------------------------------------------------------------+---------------------------------
+D RKNN: [10:30:30.315] ID  User        Tensor                             DataType  OrigShape     |     [Start       End)       Size
+D RKNN: [10:30:30.315] ---------------------------------------------------------------------------+---------------------------------
+D RKNN: [10:30:30.315] 1   ConvRelu    onnx::Conv_220                     FLOAT16   (64,3,7,7)    | 0xff7a4280 0xff7b0680 0x0000c400
+D RKNN: [10:30:30.315] 1   ConvRelu    onnx::Conv_221                     FLOAT     (64)          | 0xff7b0680 0xff7b0780 0x00000100
+D RKNN: [10:30:30.315] 3   ConvRelu    onnx::Conv_223                     FLOAT16   (64,64,3,3)   | 0xff7b0780 0xff7c2780 0x00012000
+D RKNN: [10:30:30.315] 3   ConvRelu    onnx::Conv_224                     FLOAT     (64)          | 0xff7c2780 0xff7c2880 0x00000100
+D RKNN: [10:30:30.315] 4   ConvAddRelu onnx::Conv_226                     FLOAT16   (64,64,3,3)   | 0xff7c2880 0xff7d4880 0x00012000
+D RKNN: [10:30:30.315] 4   ConvAddRelu onnx::Conv_227                     FLOAT     (64)          | 0xff7d4880 0xff7d4980 0x00000100
+D RKNN: [10:30:30.315] 5   ConvRelu    onnx::Conv_229                     FLOAT16   (64,64,3,3)   | 0xff7d4980 0xff7e6980 0x00012000
+D RKNN: [10:30:30.315] 5   ConvRelu    onnx::Conv_230                     FLOAT     (64)          | 0xff7e6980 0xff7e6a80 0x00000100
+D RKNN: [10:30:30.315] 6   ConvAddRelu onnx::Conv_232                     FLOAT16   (64,64,3,3)   | 0xff7e6a80 0xff7f8a80 0x00012000
+D RKNN: [10:30:30.315] 6   ConvAddRelu onnx::Conv_233                     FLOAT     (64)          | 0xff7f8a80 0xff7f8b80 0x00000100
+D RKNN: [10:30:30.315] 7   ConvRelu    onnx::Conv_235                     FLOAT16   (128,64,3,3)  | 0xff7f8b80 0xff81cb80 0x00024000
+D RKNN: [10:30:30.315] 7   ConvRelu    onnx::Conv_236                     FLOAT     (128)         | 0xff81cb80 0xff81cd80 0x00000200
+D RKNN: [10:30:30.315] 8   Conv        onnx::Conv_238                     FLOAT16   (128,128,3,3) | 0xff81cd80 0xff864d80 0x00048000
+D RKNN: [10:30:30.315] 8   Conv        onnx::Conv_239                     FLOAT     (128)         | 0xff864d80 0xff864f80 0x00000200
+D RKNN: [10:30:30.315] 9   ConvAddRelu onnx::Conv_241                     FLOAT16   (128,64,1,1)  | 0xff864f80 0xff868f80 0x00004000
+D RKNN: [10:30:30.315] 9   ConvAddRelu onnx::Conv_242                     FLOAT     (128)         | 0xff868f80 0xff869180 0x00000200
+D RKNN: [10:30:30.315] 10  ConvRelu    onnx::Conv_244                     FLOAT16   (128,128,3,3) | 0xff869180 0xff8b1180 0x00048000
+D RKNN: [10:30:30.315] 10  ConvRelu    onnx::Conv_245                     FLOAT     (128)         | 0xff8b1180 0xff8b1380 0x00000200
+D RKNN: [10:30:30.315] 11  ConvAddRelu onnx::Conv_247                     FLOAT16   (128,128,3,3) | 0xff8b1380 0xff8f9380 0x00048000
+D RKNN: [10:30:30.315] 11  ConvAddRelu onnx::Conv_248                     FLOAT     (128)         | 0xff8f9380 0xff8f9580 0x00000200
+D RKNN: [10:30:30.315] 12  ConvRelu    onnx::Conv_250                     FLOAT16   (256,128,3,3) | 0xff8f9580 0xff989580 0x00090000
+D RKNN: [10:30:30.315] 12  ConvRelu    onnx::Conv_251                     FLOAT     (256)         | 0xff989580 0xff989980 0x00000400
+D RKNN: [10:30:30.315] 13  Conv        onnx::Conv_253                     FLOAT16   (256,256,3,3) | 0xff989980 0xffaa9980 0x00120000
+D RKNN: [10:30:30.315] 13  Conv        onnx::Conv_254                     FLOAT     (256)         | 0xffaa9980 0xffaa9d80 0x00000400
+D RKNN: [10:30:30.315] 14  ConvAddRelu onnx::Conv_256                     FLOAT16   (256,128,1,1) | 0xffaa9d80 0xffab9d80 0x00010000
+D RKNN: [10:30:30.315] 14  ConvAddRelu onnx::Conv_257                     FLOAT     (256)         | 0xffab9d80 0xffaba180 0x00000400
+D RKNN: [10:30:30.315] 15  ConvRelu    onnx::Conv_259                     FLOAT16   (256,256,3,3) | 0xffaba180 0xffbda180 0x00120000
+D RKNN: [10:30:30.315] 15  ConvRelu    onnx::Conv_260                     FLOAT     (256)         | 0xffbda180 0xffbda580 0x00000400
+D RKNN: [10:30:30.315] 16  ConvAddRelu onnx::Conv_262                     FLOAT16   (256,256,3,3) | 0xffbda580 0xffcfa580 0x00120000
+D RKNN: [10:30:30.315] 16  ConvAddRelu onnx::Conv_263                     FLOAT     (256)         | 0xffcfa580 0xffcfa980 0x00000400
+D RKNN: [10:30:30.315] 17  Conv        onnx::Conv_265                     FLOAT16   (64,256,1,1)  | 0xffcfa980 0xffd02980 0x00008000
+D RKNN: [10:30:30.315] 17  Conv        onnx::Conv_266                     FLOAT     (64)          | 0xffd02980 0xffd02a80 0x00000100
+D RKNN: [10:30:30.315] 19  Conv        aggregation.conv.weight            FLOAT16   (64,64,1,1)   | 0xff7a2280 0xff7a4280 0x00002000
+D RKNN: [10:30:30.315] 20  Reshape     Unsqueeze_49_2reshape_shape        INT64     (4)           | 0xffd02c40 0xffd02c60 0x00000020
+D RKNN: [10:30:30.315] 21  Add         Sub_50_to_add_B                    FLOAT16   (1,64,64,1)   | 0xffd02c80 0xffd04c80 0x00002000
+D RKNN: [10:30:30.315] 22  Reshape     Softmax_47_0_unsqueeze0_shape      INT64     (4)           | 0xffd04d00 0xffd04d20 0x00000020
+D RKNN: [10:30:30.315] 25  ReduceSum   onnx::ReduceSum_194                INT64     (1)           | 0xffd02a80 0xffd02a88 0x00000008
+D RKNN: [10:30:30.315] 27  Pow         vlad_shape4_Div_60_pow_2_const     FLOAT     (1)           | 0xffd04d40 0xffd04d44 0x00000004
+D RKNN: [10:30:30.315] 28  ReduceSum   vlad_shape4_Div_60_sum_axes        INT64     (1)           | 0xffd04dc0 0xffd04dc8 0x00000008
+D RKNN: [10:30:30.315] 29  Pow         vlad_shape4_Div_60_pow_0.5_const   FLOAT     (1)           | 0xffd04d80 0xffd04d84 0x00000004
+D RKNN: [10:30:30.315] 30  Clip        onnx::Clip_267_1                   FLOAT     (1)           | 0xffd02b40 0xffd02b44 0x00000004
+D RKNN: [10:30:30.315] 30  Clip        Clip_57_max                        FLOAT     (1)           | 0xffd02bc0 0xffd02bc4 0x00000004
+D RKNN: [10:30:30.315] 31  Expand      _v_104                             INT64     (4)           | 0xffd02ac0 0xffd02ae0 0x00000020
+D RKNN: [10:30:30.315] 33  Reshape     Div_66_0_unsqueeze0_shape          INT64     (4)           | 0xffd04c80 0xffd04ca0 0x00000020
+D RKNN: [10:30:30.315] 34  Pow         vlad.3_shape4_Div_66_pow_2_const   FLOAT     (1)           | 0xffd04e00 0xffd04e04 0x00000004
+D RKNN: [10:30:30.315] 35  ReduceSum   vlad.3_shape4_Div_66_sum_axes      INT64     (1)           | 0xffd04e80 0xffd04e88 0x00000008
+D RKNN: [10:30:30.315] 36  Pow         vlad.3_shape4_Div_66_pow_0.5_const FLOAT     (1)           | 0xffd04e40 0xffd04e44 0x00000004
+D RKNN: [10:30:30.315] 37  Clip        onnx::Clip_267_2                   FLOAT     (1)           | 0xffd02b80 0xffd02b84 0x00000004
+D RKNN: [10:30:30.315] 37  Clip        Clip_63_max                        FLOAT     (1)           | 0xffd02c00 0xffd02c04 0x00000004
+D RKNN: [10:30:30.315] 38  Expand      _v_105                             INT64     (4)           | 0xffd02b00 0xffd02b20 0x00000020
+D RKNN: [10:30:30.315] 40  Reshape     Div_66_0_unsqueeze1_shape          INT64     (2)           | 0xffd04cc0 0xffd04cd0 0x00000010
+D RKNN: [10:30:30.315] ---------------------------------------------------------------------------+---------------------------------
+D RKNN: [10:30:30.316] ----------------------------------------
+D RKNN: [10:30:30.316] Total Internal Memory Size: 27904KB
+D RKNN: [10:30:30.316] Total Weight Memory Size: 5517.06KB
+D RKNN: [10:30:30.316] ----------------------------------------
+D RKNN: [10:30:30.316] The RKNN_FLAG_EXECUTE_FALLBACK_PRIOR_DEVICE_GPU is not set and without GPU op in Graphs, OpenCL will not be initialized
+I The runtime library does not support dynamic shape.
+done
+  0%|                                                                                                                                                     | 0/1 [00:00<?, ?it/s]D RKNN: [10:30:30.382] allocated memory, name: input.1, virt addr: 0x7f511b7000, dma addr: 0xfbea0000, obj addr: 0xffffff810cbdcc00, size: 1572864, aligned size: 1572864, fd: 8, handle: 4, flags: 0x3, gem name: 4, iommu domain id: 0
+D RKNN: [10:30:30.382] allocated memory, name: 218, virt addr: 0x7fa54c0000, dma addr: 0xfbe88000, obj addr: 0xffffff810cbdec00, size: 8192, aligned size: 8192, fd: 9, handle: 5, flags: 0x3, gem name: 5, iommu domain id: 0
+D RKNN: [10:30:30.382] enable argb mode, dtype: FLOAT, channel: 3
+D RKNN: [10:30:30.382] update cvt sign: 0
+D RKNN: [10:30:30.383] normalize target: CPU
+W RKNN: [10:30:30.396] Failed to get NPU freq, take 1000MHz as default NPU freq
+D RKNN: [10:30:30.396] Get DDR frequency: 1596MHz
+D RKNN: [10:30:30.461] ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+D RKNN: [10:30:30.461]                                                                          Network Layer Information Table                                                                               
+D RKNN: [10:30:30.461] ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+D RKNN: [10:30:30.461] ID   OpType           DataType Target InputShape                               OutputShape            Cycles(DDR/NPU/Total)    Time(us)     MacUsage(%)          WorkLoad(0/1/2)      RW(KB)       FullName        
+D RKNN: [10:30:30.461] ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+D RKNN: [10:30:30.461] 1    InputOperator    FLOAT16  CPU    \                                        (1,3,512,512)          0/0/0                    7            \                    0.0%/0.0%/0.0%       0            InputOperator:input.1
+D RKNN: [10:30:30.461] 2    ConvRelu         FLOAT16  NPU    (1,3,512,512),(64,3,7,7),(64)            (1,64,256,256)         560107/12845056/12845056 5651         7.10/7.10/7.10       33.6%/33.2%/33.2%    1585         Conv:Conv_3     
+D RKNN: [10:30:30.461] 3    MaxPool          FLOAT16  NPU    (1,64,256,256)                           (1,64,128,128)         586616/0/586616          2714         \                    100.0%/0.0%/0.0%     8192         MaxPool:MaxPool_5
+D RKNN: [10:30:30.461] 4    ConvRelu         FLOAT16  NPU    (1,64,128,128),(64,64,3,3),(64)          (1,64,128,128)         238786/1179648/1179648   695          56.58/56.58/56.58    33.6%/33.6%/32.8%    2120         Conv:Conv_6     
+D RKNN: [10:30:30.461] 5    ConvAddRelu      FLOAT16  NPU    (1,64,128,128),(64,64,3,3),(64),...      (1,64,128,128)         356109/1179648/1179648   687          57.24/57.24/57.24    33.6%/33.6%/32.8%    4168         Conv:Conv_8     
+D RKNN: [10:30:30.461] 6    ConvRelu         FLOAT16  NPU    (1,64,128,128),(64,64,3,3),(64)          (1,64,128,128)         238786/1179648/1179648   754          52.15/52.15/52.15    33.6%/33.6%/32.8%    2120         Conv:Conv_11    
+D RKNN: [10:30:30.461] 7    ConvAddRelu      FLOAT16  NPU    (1,64,128,128),(64,64,3,3),(64),...      (1,64,128,128)         356109/1179648/1179648   747          52.64/52.64/52.64    33.6%/33.6%/32.8%    4168         Conv:Conv_13    
+D RKNN: [10:30:30.461] 8    ConvRelu         FLOAT16  NPU    (1,64,128,128),(128,64,3,3),(128)        (1,128,64,64)          184263/589824/589824     463          42.46/42.46/42.46    34.4%/32.8%/32.8%    2192         Conv:Conv_16    
+D RKNN: [10:30:30.461] 9    Conv             FLOAT16  NPU    (1,128,64,64),(128,128,3,3),(128)        (1,128,64,64)          133851/1179648/1179648   684          57.49/57.49/57.49    34.4%/32.8%/32.8%    1312         Conv:Conv_18    
+D RKNN: [10:30:30.461] 10   ConvAddRelu      FLOAT16  NPU    (1,64,128,128),(128,64,1,1),(128),...    (1,128,64,64)          235592/65536/235592      267          8.18/8.18/8.18       34.4%/32.8%/32.8%    3088         Conv:Conv_19    
+D RKNN: [10:30:30.461] 11   ConvRelu         FLOAT16  NPU    (1,128,64,64),(128,128,3,3),(128)        (1,128,64,64)          133851/1179648/1179648   759          51.81/51.81/51.81    34.4%/32.8%/32.8%    1312         Conv:Conv_22    
+D RKNN: [10:30:30.461] 12   ConvAddRelu      FLOAT16  NPU    (1,128,64,64),(128,128,3,3),(128),...    (1,128,64,64)          192512/1179648/1179648   754          52.15/52.15/52.15    34.4%/32.8%/32.8%    2336         Conv:Conv_24    
+D RKNN: [10:30:30.461] 13   ConvRelu         FLOAT16  NPU    (1,128,64,64),(256,128,3,3),(256)        (1,256,32,32)          121047/589824/589824     549          35.81/35.81/35.81    37.5%/31.2%/31.2%    1601         Conv:Conv_27    
+D RKNN: [10:30:30.461] 14   Conv             FLOAT16  NPU    (1,256,32,32),(256,256,3,3),(256)        (1,256,32,32)          124714/1179648/1179648   789          49.84/49.84/49.84    37.5%/31.2%/31.2%    1665         Conv:Conv_29    
+D RKNN: [10:30:30.461] 15   ConvAddRelu      FLOAT16  NPU    (1,128,64,64),(256,128,1,1),(256),...    (1,256,32,32)          121047/65536/121047      264          8.27/8.27/8.27       34.4%/34.4%/31.2%    1601         Conv:Conv_30    
+D RKNN: [10:30:30.461] 16   ConvRelu         FLOAT16  NPU    (1,256,32,32),(256,256,3,3),(256)        (1,256,32,32)          124714/1179648/1179648   791          49.71/49.71/49.71    37.5%/31.2%/31.2%    1665         Conv:Conv_33    
+D RKNN: [10:30:30.461] 17   ConvAddRelu      FLOAT16  NPU    (1,256,32,32),(256,256,3,3),(256),...    (1,256,32,32)          154044/1179648/1179648   787          49.96/49.96/49.96    37.5%/31.2%/31.2%    2177         Conv:Conv_35    
+D RKNN: [10:30:30.461] 18   Conv             FLOAT16  NPU    (1,256,32,32),(64,256,1,1),(64)          (1,64,32,32)           38511/32768/38511        198          5.52/5.52/5.52       34.3%/34.3%/31.3%    544          Conv:Conv_38    
+D RKNN: [10:30:30.461] 19   LpNormalization  FLOAT16  CPU    (1,64,32,32)                             (1,64,32,32)           0/0/0                    1819         \                    0.0%/0.0%/0.0%       128          LpNormalization:ReduceL2_39_2lpnorm
+D RKNN: [10:30:30.461] 20   Conv             FLOAT16  NPU    (1,64,32,32),(64,64,1,1)                 (1,64,32,32)           15124/8192/15124         172          1.59/1.59/1.59       34.3%/34.3%/31.3%    136          Conv:Conv_45    
+D RKNN: [10:30:30.461] 21   Reshape          FLOAT16  NPU    (1,64,32,32),(4)                         (1,1,64,1024)          65997/0/65997            1388         \                    100.0%/0.0%/0.0%     128          Reshape:Unsqueeze_49_2reshape
+D RKNN: [10:30:30.461] 22   Add              FLOAT16  NPU    (1,1,64,1024),(1,64,64,1),...            (1,64,64,1024)         997706/0/997706          4492         \                    100.0%/0.0%/0.0%     9224         Add:Sub_50_to_add
+D RKNN: [10:30:30.461] 23   Reshape          FLOAT16  NPU    (1,64,32,32),(4)                         (1,64,1,1024)          14668/0/14668            1            \                    0.0%/0.0%/0.0%       128          Reshape:Softmax_47_0_unsqueeze0
+D RKNN: [10:30:30.461] 24   exSoftmax13      FLOAT16  NPU    (1,64,1,1024),(1,64,1,1)                 (1,64,1,1024)          14673/0/14673            338          \                    100.0%/0.0%/0.0%     128          exSoftmax13:Softmax_47
+D RKNN: [10:30:30.461] 25   Mul              FLOAT16  NPU    (1,64,64,1024),(1,64,1,1024)             (1,64,64,1024)         945919/0/945919          3392         \                    100.0%/0.0%/0.0%     8320         Mul:Mul_53      
+D RKNN: [10:30:30.461] 26   ReduceSum        FLOAT16  CPU    (1,64,64,1024),(1)                       (1,64,64,1)            0/0/0                    32532        \                    0.0%/0.0%/0.0%       8192         ReduceSum:ReduceSum_55
+D RKNN: [10:30:30.461] 27   Transpose        FLOAT16  NPU    (1,64,64,1)                              (1,64,1,64)            917/0/917                149          \                    100.0%/0.0%/0.0%     8            Transpose:Div_60_0_unsqueeze0_2reshape
+D RKNN: [10:30:30.461] 28   Pow              FLOAT16  CPU    (1,64,1,64),(1)                          (1,64,1,64)            0/0/0                    236          \                    0.0%/0.0%/0.0%       8            Pow:vlad_shape4_Div_60_pow_2
+D RKNN: [10:30:30.461] 29   ReduceSum        FLOAT16  CPU    (1,64,1,64),(1)                          (1,64,1,1)             0/0/0                    45           \                    0.0%/0.0%/0.0%       8            ReduceSum:vlad_shape4_Div_60_sum
+D RKNN: [10:30:30.461] 30   Pow              FLOAT16  CPU    (1,64,1,1),(1)                           (1,64,1,1)             0/0/0                    19           \                    0.0%/0.0%/0.0%       0            Pow:vlad_shape4_Div_60_pow_0.5
+D RKNN: [10:30:30.461] 31   Clip             FLOAT16  NPU    (1,64,1,1),(1),(1)                       (1,64,1,1)             15/0/15                  97           \                    33.5%/33.5%/33.1%    0            Clip:Clip_57    
+D RKNN: [10:30:30.461] 32   Expand           FLOAT16  NPU    (1,64,1,1),(4)                           (1,64,1,64)            468/0/468                147          \                    100.0%/0.0%/0.0%     0            Expand:Expand_59
+D RKNN: [10:30:30.461] 33   Div              FLOAT16  NPU    (1,64,1,64),(1,64,1,64)                  (1,64,1,64)            1375/0/1375              146          \                    100.0%/0.0%/0.0%     16           Div:Div_60      
+D RKNN: [10:30:30.461] 34   Reshape          FLOAT16  NPU    (1,64,1,64),(4)                          (1,1,1,4096)           4127/0/4127              221          \                    100.0%/0.0%/0.0%     8            Reshape:Div_66_0_unsqueeze0
+D RKNN: [10:30:30.461] 35   Pow              FLOAT16  CPU    (1,1,1,4096),(1)                         (1,1,1,4096)           0/0/0                    229          \                    0.0%/0.0%/0.0%       64           Pow:vlad.3_shape4_Div_66_pow_2
+D RKNN: [10:30:30.461] 36   ReduceSum        FLOAT16  CPU    (1,1,1,4096),(1)                         (1,1,1,1)              0/0/0                    44           \                    0.0%/0.0%/0.0%       8            ReduceSum:vlad.3_shape4_Div_66_sum
+D RKNN: [10:30:30.461] 37   Pow              FLOAT16  CPU    (1,1,1,1),(1)                            (1,1,1,1)              0/0/0                    16           \                    0.0%/0.0%/0.0%       0            Pow:vlad.3_shape4_Div_66_pow_0.5
+D RKNN: [10:30:30.461] 38   Clip             FLOAT16  NPU    (1,1,1,1),(1),(1)                        (1,1,1,1)              3/0/3                    87           \                    100.0%/0.0%/0.0%     0            Clip:Clip_63    
+D RKNN: [10:30:30.461] 39   Expand           FLOAT16  NPU    (1,1,1,1),(4)                            (1,1,1,4096)           3670/0/3670              99           \                    100.0%/0.0%/0.0%     0            Expand:Expand_65
+D RKNN: [10:30:30.461] 40   Div              FLOAT16  NPU    (1,1,1,4096),(1,1,1,4096)                (1,1,1,4096)           11000/0/11000            101          \                    100.0%/0.0%/0.0%     128          Div:Div_66      
+D RKNN: [10:30:30.461] 41   Reshape          FLOAT16  CPU    (1,1,1,4096),(2)                         (1,4096)               0/0/0                    44           \                    0.0%/0.0%/0.0%       64           Reshape:Div_66_0_unsqueeze1
+D RKNN: [10:30:30.461] 42   OutputOperator   FLOAT16  CPU    (1,4096)                                 \                      0/0/0                    4            \                    0.0%/0.0%/0.0%       8            OutputOperator:218
+D RKNN: [10:30:30.461] ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+D RKNN: [10:30:30.461] Total Operator Elapsed Per Frame Time(us): 63378
+D RKNN: [10:30:30.461] Total Memory Read/Write Per Frame Size(KB): 68554.8
+D RKNN: [10:30:30.461] ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+D RKNN: [10:30:30.462] ---------------------------------------------------------------------------------------------------
+D RKNN: [10:30:30.462]                                  Operator Time Consuming Ranking Table            
+D RKNN: [10:30:30.462] ---------------------------------------------------------------------------------------------------
+D RKNN: [10:30:30.462] OpType             CallNumber   CPUTime(us)  GPUTime(us)  NPUTime(us)  TotalTime(us)  TimeRatio(%)  
+D RKNN: [10:30:30.462] ---------------------------------------------------------------------------------------------------
+D RKNN: [10:30:30.462] ReduceSum          3            32621        0            0            32621          51.47%        
+D RKNN: [10:30:30.462] ConvRelu           7            0            0            9662         9662           15.25%        
+D RKNN: [10:30:30.462] Add                1            0            0            4492         4492           7.09%         
+D RKNN: [10:30:30.462] ConvAddRelu        6            0            0            3506         3506           5.53%         
+D RKNN: [10:30:30.462] Mul                1            0            0            3392         3392           5.35%         
+D RKNN: [10:30:30.462] MaxPool            1            0            0            2714         2714           4.28%         
+D RKNN: [10:30:30.462] Conv               4            0            0            1843         1843           2.91%         
+D RKNN: [10:30:30.462] LpNormalization    1            1819         0            0            1819           2.87%         
+D RKNN: [10:30:30.462] Reshape            4            44           0            1610         1654           2.61%         
+D RKNN: [10:30:30.462] Pow                4            500          0            0            500            0.79%         
+D RKNN: [10:30:30.462] exSoftmax13        1            0            0            338          338            0.53%         
+D RKNN: [10:30:30.462] Div                2            0            0            247          247            0.39%         
+D RKNN: [10:30:30.462] Expand             2            0            0            246          246            0.39%         
+D RKNN: [10:30:30.462] Clip               2            0            0            184          184            0.29%         
+D RKNN: [10:30:30.462] Transpose          1            0            0            149          149            0.24%         
+D RKNN: [10:30:30.462] InputOperator      1            7            0            0            7              0.01%         
+D RKNN: [10:30:30.462] OutputOperator     1            4            0            0            4              0.01%         
+D RKNN: [10:30:30.462] ---------------------------------------------------------------------------------------------------
+
+D RKNN: [10:30:30.697] free memory, name: input.1, virt addr: 0x7f511b7000, dma addr: 0xfbea0000, obj addr: 0xffffff810cbdcc00, size: 1572864, aligned size: 1572864, fd: 8, handle: 4, flags: 0x3, gem name: 4, iommu domain id: 0
+D RKNN: [10:30:30.698] free memory, name: internal, virt addr: 0x7f5342c000, dma addr: 0xfc020000, obj addr: 0xffffff8103aef400, size: 28573696, aligned size: 28573696, fd: 7, handle: 3, flags: 0x3, gem name: 3, iommu domain id: 0
+D RKNN: [10:30:30.715] free memory, name: weight, virt addr: 0x7f54f6c000, dma addr: 0xff7a0000, obj addr: 0xffffff8103aee400, size: 6324544, aligned size: 6328320, fd: 6, handle: 2, flags: 0x3, gem name: 2, iommu domain id: 0
+D RKNN: [10:30:30.719] free memory, name: 218, virt addr: 0x7fa54c0000, dma addr: 0xfbe88000, obj addr: 0xffffff810cbdec00, size: 8192, aligned size: 8192, fd: 9, handle: 5, flags: 0x3, gem name: 5, iommu domain id: 0
+D RKNN: [10:30:30.719] free memory, name: task, virt addr: 0x7fa54c2000, dma addr: 0xffdb0000, obj addr: 0xffffff8103aeb800, size: 33200, aligned size: 36864, fd: 5, handle: 1, flags: 0xb, gem name: 1, iommu domain id: 0

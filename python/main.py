@@ -7,7 +7,7 @@ import faiss
 import numpy as np
 from time import time
 from tqdm import tqdm
-
+from memory_profiler import profile
 
 IMG_SIZE = (512, 512)  # (width, height), such as (1280, 736)
 
@@ -36,7 +36,7 @@ class RKInfer:
     def setup_model(self):
         model_path = self.args.model_path
         from py_utils.rknn_executor import RKNN_model_container 
-        self.model = RKNN_model_container(model_path, True)
+        self.model = RKNN_model_container(model_path, False)
 
     def model_inference(self, input_data):
 
@@ -74,7 +74,7 @@ class RKInfer:
                     x += p[1] * w
                 best_position = (y, x)
         return best_position
-
+    @profile
     def load_local_database(self):
         if os.path.exists(self.args.path_local_database):
             print("loading Database feature and utms ...")
@@ -179,19 +179,19 @@ def pre_process(img_path, contrast_factor=3):
     return image_rgb
 
 
-
-if __name__ == '__main__':
+# @profile
+def main():
 
     parser = argparse.ArgumentParser(description='Process some integers.')
     # basic params
-    parser.add_argument('--model_path', type=str, default= "/home/xujg/code/UAV-VisionLoc/model/uvl_731.rknn", help='model path, could be .pt or .rknn file')
+    parser.add_argument('--model_path', type=str, default= "/home/xujg/code/UAV-VisionLoc-Deploy/model/uvl_731.rknn", help='model path, could be .pt or .rknn file')
 
     parser.add_argument('--img_show', action='store_true', default=False, help='draw the result and show')
     parser.add_argument('--img_save', action='store_true', default=True, help='save the result')
-    parser.add_argument('--save_path', default="/home/xujg/code/UAV-VisionLoc/python/result", help='save the result')
+    parser.add_argument('--save_path', default="/home/xujg/code/UAV-VisionLoc-Deploy/python/result", help='save the result')
     # data params
-    parser.add_argument('--img_folder', type=str, default='/home/xujg/code/UAV-VisionLoc/data/queries', help='img folder path')
-    parser.add_argument('--path_local_database', type=str, default='/home/xujg/code/UAV-VisionLoc/data/database/database_features.h5', help='load local features and utms of database')
+    parser.add_argument('--img_folder', type=str, default='/home/xujg/code/UAV-VisionLoc-Deploy/data/queries', help='img folder path')
+    parser.add_argument('--path_local_database', type=str, default='/home/xujg/code/UAV-VisionLoc-Deploy/data/database/database_features.h5', help='load local features and utms of database')
 
     parser.add_argument(
         "--features_dim",
@@ -262,3 +262,8 @@ if __name__ == '__main__':
             if args.img_show:
                 cv2.imshow("full post process result", img_p)
                 cv2.waitKeyEx(0)
+    
+
+if __name__ == '__main__':
+
+    main()
