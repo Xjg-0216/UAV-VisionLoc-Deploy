@@ -75,14 +75,5 @@ Fri Aug  2 10:57:58 2024    /home/xujg/code/UAV-VisionLoc-Deploy/python/profile_
 9. **`/home/xujg/miniconda3/envs/vtl/lib/python3.8/site-packages/rknnlite/api/rknn_lite.py:107(init_runtime)`**：内部时间为 0.045 秒，总时间 0.310 秒。
 10. **`{method 'read' of '_io.BufferedReader' objects}`**：内部时间为 0.044 秒。
 
-### 结论
 
-1. **模块加载时间**：从累计时间来看，模块加载和初始化消耗了大量时间（约 1 秒）。如果可能的话，可以考虑优化模块加载过程，使用懒加载或减少不必要的导入。
-    
-2. **模型初始化和推理**：`setup_model` 和 `rknn_lite.py` 的 `init_runtime` 和 `inference` 函数消耗了显著的时间。可能需要进一步优化模型初始化和推理过程，或者检查这些函数是否可以并行化或优化。
-    
-3. **文件和数据读取**：内部时间显示了文件读取和数据读取占用了不少时间，特别是 `posix.read` 和 `h5py` 的 `__getitem__`。可以考虑使用更高效的数据读取方法或缓存机制。
-    
-
-通过这些分析，可以定位和优化代码中的性能瓶颈，从而提升整体性能。
 

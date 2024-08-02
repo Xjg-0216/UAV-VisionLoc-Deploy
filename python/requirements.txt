@@ -1,0 +1,13 @@
+faiss-cpu==1.8.0
+h5py
+MarkupSafe==2.1.5
+memory-profiler==0.61.0
+numpy
+opencv-python==4.10.0.82
+packaging==24.1
+pillow==10.3.0
+pyparsing==3.1.2
+rknn-toolkit-lite2 @ file:///home/xujg/code/rk_vtl/rknn_toolkit_lite2-2.0.0b0-cp38-cp38-linux_aarch64.whl#sha256=fce5cf7b7f2641923217dd6e3f8130cd871e3c56e3eb7b9965bade2b7b4c7eb3
+scikit-learn==1.3.2
+scipy==1.10.1
+tqdm==4.66.4

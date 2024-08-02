@@ -74,7 +74,7 @@ class RKInfer:
                     x += p[1] * w
                 best_position = (y, x)
         return best_position
-    @profile
+    # @profile
     def load_local_database(self):
         if os.path.exists(self.args.path_local_database):
             print("loading Database feature and utms ...")
