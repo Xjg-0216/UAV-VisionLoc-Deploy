@@ -1,0 +1,43 @@
+2024-08-07 17:16:37,956 - root - I - Infer 1/1
+2024-08-07 17:16:38,142 - root - I - Inference time: 0.0936 s
+2024-08-07 17:16:38,142 - root - I - Post-processing time: 0.0493 s
+2024-08-07 17:16:38,143 - root - I - Position: [ 437071.753968 4220759.827505]
+2024-08-07 17:16:38,144 - root - I - IMG: @437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 17:16:38,152 - root - I - Position result saved to /home/xujg/code/UAV-VisionLoc-Deploy/python/result/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 17:23:22,314 - root - I - Infer 1/1
+2024-08-07 17:23:22,509 - root - I - Position: [ 437071.753968 4220759.827505]
+2024-08-07 17:23:22,511 - root - I - IMG: @437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 17:23:22,518 - root - I - Position result saved to /home/xujg/code/UAV-VisionLoc-Deploy/python/result/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 17:23:51,040 - root - I - Infer 1/1
+2024-08-07 17:23:51,241 - root - I - Position: [ 437071.753968 4220759.827505]
+2024-08-07 17:23:51,242 - root - I - IMG: @437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 17:23:51,250 - root - I - Position result saved to /home/xujg/code/UAV-VisionLoc-Deploy/python/result/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 17:26:48,906 - root - DEBUG - Loading database features and utms
+2024-08-07 17:26:49,328 - root - DEBUG - Setting up model from path: /home/xujg/code/UAV-VisionLoc-Deploy/model/uvl_v0807.rknn
+2024-08-07 17:26:50,137 - root - D - Checking if path is an image: @437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 17:26:50,137 - root - D - Checking if path is an image: test
+2024-08-07 17:26:50,137 - root - D - Checking if path is an image: test_sample.h5
+2024-08-07 17:26:50,148 - root - I - Infer 1/1
+2024-08-07 17:26:50,148 - root - D - Pre-processing image: /home/xujg/code/UAV-VisionLoc-Deploy/data/queries/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 17:26:50,148 - root - D - Distorting image: /home/xujg/code/UAV-VisionLoc-Deploy/data/queries/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 17:26:50,152 - root - D - Converting Euler angles to rotation matrix
+2024-08-07 17:26:50,160 - root - D - Center cropping image
+2024-08-07 17:26:50,188 - root - D - Starting model inference
+2024-08-07 17:26:50,256 - root - D - Starting post processing
+2024-08-07 17:26:50,293 - root - D - Inference time: 0.0678 s
+2024-08-07 17:26:50,293 - root - D - Post-processing time: 0.0368 s
+2024-08-07 17:26:50,294 - root - D - Pre-processing time: 0.0402 s
+2024-08-07 17:26:50,294 - root - I - Position: [ 437071.753968 4220759.827505]
+2024-08-07 17:26:50,295 - root - I - IMG: @437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 17:26:50,297 - root - D - Drawing position: [ 437071.753968 4220759.827505] on image
+2024-08-07 17:26:50,302 - root - I - Position result saved to /home/xujg/code/UAV-VisionLoc-Deploy/python/result/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 18:04:50,808 - root - I - Infer 1/1
+2024-08-07 18:04:50,956 - root - D - Inference time: 0.1069 s
+2024-08-07 18:04:50,957 - root - D - Pre-processing time: 0.0412 s
+2024-08-07 18:04:50,957 - root - I - Position: [ 437071.753968 4220759.827505]
+2024-08-07 18:04:50,965 - root - I - Position result saved to /home/xujg/code/UAV-VisionLoc-Deploy/python/result/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg
+2024-08-07 18:24:41,841 - root - I - Infer 1/1
+2024-08-07 18:24:42,037 - root - D - Inference time: 0.1485 s
+2024-08-07 18:24:42,038 - root - D - Pre-processing time: 0.0471 s
+2024-08-07 18:24:42,038 - root - I - Position: [ 437071.753968 4220759.827505]
+2024-08-07 18:24:42,046 - root - I - Position result saved to /home/xujg/code/UAV-VisionLoc-Deploy/python/result/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg

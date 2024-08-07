@@ -1,0 +1,12 @@
+{
+    "model_path": "/home/xujg/code/UAV-VisionLoc-Deploy/model/uvl_v0807.rknn",
+    "img_show": false,
+    "img_save": true,
+    "use_camera": false,
+    "save_path": "/home/xujg/code/UAV-VisionLoc-Deploy/python/result",
+    "img_folder": "/home/xujg/code/UAV-VisionLoc-Deploy/data/queries",
+    "path_local_database": "/home/xujg/code/UAV-VisionLoc-Deploy/data/database/database_features.h5",
+    "logging_level": "DEBUG", 
+    "log_path": "/home/xujg/code/UAV-VisionLoc-Deploy/python/vtl.log" 
+
+}

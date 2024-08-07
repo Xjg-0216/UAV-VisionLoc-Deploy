@@ -10,80 +10,84 @@ from tqdm import tqdm
 import logging
 import json
 
-def load_config(config_path):
-    """加载配置文件"""
-    with open(config_path, 'r') as config_file:
-        return json.load(config_file)
-
-def configure_logging(config):
-    """配置日志"""
-    log_level = config['logging_level'].upper()
-    logging.basicConfig(
-        level=getattr(logging, log_level, logging.INFO),
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(config["log_path"]),  # 将日志写入文件
-            logging.StreamHandler()  # 将日志输出到控制台
-        ]
-    )
-    return logging.getLogger()
+# 配置日志
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('vtl.log'),  # 将日志写入文件
+        logging.StreamHandler()  # 将日志输出到控制台
+    ]
+)
+logger = logging.getLogger()
 
 def img_check(path):
     """检查路径是否是图像文件"""
+    logger.debug("Checking if path is an image: %s", path)
     img_types = ['.jpg', '.jpeg', '.png', '.bmp']
     return any(path.lower().endswith(img_type) for img_type in img_types)
 
 def draw(img, position):
     """在图像上绘制位置信息"""
-    cv2.putText(img, '{}'.format(position), (0, 512 - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+    logger.debug("Drawing position: %s on image", position)
+    cv2.putText(img, '{}'.format(position), (0, img.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
 
 class RKInfer:
-    def __init__(self, args):
-        self.args = args
+    def __init__(self, config):
+        self.config = config
         self.load_local_database()
-        self.faiss_index = faiss.IndexFlatL2(args.features_dim)
+        self.faiss_index = faiss.IndexFlatL2(config["features_dim"])
         self.faiss_index.add(self.database_features)
         self.setup_model()
 
     def setup_model(self):
         """加载并设置模型"""
+        logger.info("Setting up model from path: %s", self.config["model_path"])
+        model_path = self.config["model_path"]
         from py_utils.rknn_executor import RKNN_model_container 
-        self.model = RKNN_model_container(self.args.model_path, False)
+        self.model = RKNN_model_container(model_path, False)
 
     def model_inference(self, input_data):
         """模型推理"""
+        logger.debug("Starting model inference")
         t_start = time()
         outputs = self.model.run([input_data])
+        t_infer = time()
         position = self.post_process(outputs[0])
         t_end = time()
-        logger.debug("Inference time: {:.4f} s".format(t_end - t_start))
+        logger.debug("Inference time: {:.4f} s".format(t_infer - t_start))
+        logger.debug("Post-processing time: {:.4f} s".format(t_end - t_infer))
         return position
 
     def post_process(self, result):
         """后处理模型输出，获取最佳位置"""
-        distances, predictions = self.faiss_index.search(result, max(self.args.recall_values))
-        sort_idx = np.argsort(distances[0])
-        best_position = self._calculate_best_position(distances[0], predictions[0], sort_idx)
+        logger.debug("Starting post processing")
+        distances, predictions = self.faiss_index.search(result, max(self.config["recall_values"]))
+        distance = distances[0]
+        prediction = predictions[0]
+        sort_idx = np.argsort(distance)
+        best_position = self._calculate_best_position(distance, prediction, sort_idx)
         return best_position
 
     def _calculate_best_position(self, distance, prediction, sort_idx):
         """根据距离和预测结果计算最佳位置"""
-        if self.args.use_best_n == 1:
+        if self.config["use_best_n"] == 1:
             return self.database_utms[prediction[sort_idx[0]]]
         if distance[sort_idx[0]] == 0:
             return self.database_utms[prediction[sort_idx[0]]]
         
         mean = distance[sort_idx[0]]
         sigma = distance[sort_idx[0]] / distance[sort_idx[-1]]
-        X = np.array(distance[sort_idx[:self.args.use_best_n]]).reshape((-1,))
+        X = np.array(distance[sort_idx[:self.config["use_best_n"]]]).reshape((-1,))
         weights = np.exp(-np.square(X - mean) / (2 * sigma ** 2))  # 高斯分布权重
         weights /= np.sum(weights)
-        return np.average(self.database_utms[prediction[sort_idx[:self.args.use_best_n]]], axis=0, weights=weights)
+        return np.average(self.database_utms[prediction[sort_idx[:self.config["use_best_n"]]]], axis=0, weights=weights)
 
     def load_local_database(self):
         """加载本地数据库特征和位置"""
-        if os.path.exists(self.args.path_local_database):
-            with h5py.File(self.args.path_local_database, 'r') as hf:
+        if os.path.exists(self.config["path_local_database"]):
+            logger.info("Loading database features and utms")
+            with h5py.File(self.config["path_local_database"], 'r') as hf:
                 self.database_features = hf['database_features'][:]
                 self.database_utms = hf['database_utms'][:]
         else:
@@ -93,6 +97,7 @@ class RKInfer:
 
 def center_crop(img, target_width=512, target_height=512):
     """中心裁剪图像"""
+    logger.debug("Center cropping image")
     height, width, _ = img.shape
     start_x = width // 2 - target_width // 2
     start_y = height // 2 - target_height // 2
@@ -100,13 +105,15 @@ def center_crop(img, target_width=512, target_height=512):
 
 def euler_to_rotation_matrix(roll, pitch, yaw):
     """将欧拉角转换为旋转矩阵"""
+    logger.debug("Converting Euler angles to rotation matrix")
     R_x = np.array([[1, 0, 0], [0, np.cos(roll), -np.sin(roll)], [0, np.sin(roll), np.cos(roll)]])
     R_y = np.array([[np.cos(pitch), 0, np.sin(pitch)], [0, 1, 0], [-np.sin(pitch), 0, np.cos(pitch)]])
     R_z = np.array([[np.cos(yaw), -np.sin(yaw), 0], [np.sin(yaw), np.cos(yaw), 0], [0, 0, 1]])
     return np.dot(R_z, np.dot(R_y, R_x))
 
 def distort(img_path):
-    """对图像进行透射变换"""
+    """对图像进行扭曲变换"""
+    logger.debug("Distorting image: %s", img_path)
     img = cv2.imread(img_path)
     height, width = img.shape[:2]
     yaw, pitch, roll = map(np.float32, img_path.split("@")[3:6])
@@ -116,10 +123,12 @@ def distort(img_path):
     matrix = cv2.getPerspectiveTransform(src_points, dst_points.astype('float32'))
     return cv2.warpPerspective(img, matrix, (width, height))
 
-def pre_process(img_path, contrast_factor=3):
+def pre_process(img, contrast_factor=3):
     """预处理图像"""
-    img = distort(img_path)
+    logger.debug("Pre-processing image")
+    logger.debug("h, w: {},{}".format(img.shape[0], img.shape[1]))
     img = center_crop(img)
+    img = cv2.resize(img,dsize=(512, 512))
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img_float = img_gray.astype(np.float32) / 255.0
     mean = np.mean(img_float)
@@ -131,64 +140,85 @@ def pre_process(img_path, contrast_factor=3):
     img_normalized = (img_rgb - mean) / std
     return img_normalized.astype(np.float32)
 
-def process_images(rk_engine, img_list, args):
+def process_images(rk_engine, img_list, config):
     """处理图像列表，进行推理"""
     for i in tqdm(range(len(img_list))):
         logger.info('Infer {}/{}'.format(i + 1, len(img_list)))
         img_name = img_list[i]
-        img_path = os.path.join(args.img_folder, img_name)
+        img_path = os.path.join(config["img_folder"], img_name)
         if not os.path.exists(img_path):
             logger.warning("%s is not found", img_name)
             continue
         t1 = time()
-        input_data = pre_process(img_path)
+        img = cv2.imread(img_path)
+        input_data = pre_process(img)
         t2 = time()
         input_data = np.expand_dims(input_data, 0)
         position = rk_engine.model_inference(input_data)
         logger.debug("Pre-processing time: {:.4f} s".format(t2 - t1))
         logger.info("Position: %s", position)
-        handle_result(img_path, img_name, position, args)
+        handle_result(img, img_name, position, config)
 
-def handle_result(img_path, img_name, position, args):
+def process_camera(rk_engine, config):
+    """处理摄像头输入"""
+    cap = cv2.VideoCapture('/dev/video81')
+    if not cap.isOpened():
+        logger.error("Error: Could not open camera.")
+        sys.exit()
+    
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            logger.error("Error: Could not read frame from camera.")
+            break
+
+        t1 = time()
+        input_data = pre_process(frame)
+        t2 = time()
+        input_data = np.expand_dims(input_data, 0)
+        position = rk_engine.model_inference(input_data)
+        logger.debug("Pre-processing time: {:.4f} s".format(t2 - t1))
+        logger.info("Position: %s", position)
+        # handle_result(frame, "camera_frame", position, config)
+
+        if config["img_show"]:
+            cv2.imshow("Camera Frame", frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+    cap.release()
+    cv2.destroyAllWindows()
+
+def handle_result(img, img_name, position, config):
     """处理并保存结果图像"""
-    if args.img_show or args.img_save:
-        img_p = cv2.imread(img_path)
-        draw(img_p, position)
-        if args.img_save:
-            if not os.path.exists(args.save_path):
-                os.makedirs(args.save_path)
-            result_path = os.path.join(args.save_path, img_name)
-            cv2.imwrite(result_path, img_p)
+    if config["img_show"] or config["img_save"]:
+        logger.info('IMG: %s', img_name)
+        draw(img, position)
+        if config["img_save"]:
+            if not os.path.exists(config["save_path"]):
+                os.makedirs(config["save_path"])
+            result_path = os.path.join(config["save_path"], img_name)
+            cv2.imwrite(result_path, img)
             logger.info('Position result saved to %s', result_path)
-        if args.img_show:
-            cv2.imshow("Full post process result", img_p)
-            cv2.waitKeyEx(0)
+        if config["img_show"]:
+            cv2.imshow("Full post process result", img)
+            cv2.waitKey(1)
 
 def main():
-    config_path = '/home/xujg/code/UAV-VisionLoc-Deploy/config.json'
-    config = load_config(config_path)
-    global logger
-    logger = configure_logging(config)
 
-    parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('--model_path', type=str, default=config["model_path"], help='Model path, could be .pt or .rknn file')
-    parser.add_argument('--img_show', action='store_true', default=config["img_show"], help='Draw the result and show')
-    parser.add_argument('--img_save', action='store_true', default=config["img_save"], help='Save the result')
-    parser.add_argument('--save_path', default=config["save_path"], help='Path to save the result')
-    parser.add_argument('--img_folder', type=str, default=config["img_folder"], help='Path to the image folder')
-    parser.add_argument('--path_local_database', type=str, default=config["path_local_database"], help='Path to load local features and utms of the database')
-    parser.add_argument('--features_dim', type=int, default=4096, help='NetVLAD output dims.')
-    parser.add_argument('--recall_values', type=int, default=[1, 5, 10, 20], nargs="+", help='Recalls to be computed, such as R@5.')
-    parser.add_argument('--use_best_n', type=int, default=1, help='Calculate the position from weighted averaged best n. If n = 1, then it is equivalent to top 1')
 
-    args = parser.parse_args()
+    # 解析 config.json 文件
+    with open('/home/xujg/code/UAV-VisionLoc-Deploy/config.json', 'r') as config_file:
+        config = json.load(config_file)
 
-    rk_engine = RKInfer(args)
+    rk_engine = RKInfer(config)
 
-    file_list = sorted(os.listdir(args.img_folder))
-    img_list = [path for path in file_list if img_check(path)]
-
-    process_images(rk_engine, img_list, args)
+    if config["use_camera"]:
+        process_camera(rk_engine, config)
+    else:
+        file_list = sorted(os.listdir(config["img_folder"]))
+        img_list = [path for path in file_list if img_check(path)]
+        process_images(rk_engine, img_list, config)
 
 if __name__ == '__main__':
     main()
