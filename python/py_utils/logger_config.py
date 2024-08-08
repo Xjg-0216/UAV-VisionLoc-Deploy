@@ -1,19 +1,20 @@
-import logging
-import json
+
+from loguru import logger
+import sys
 
 def configure_logging(config):
-
+    """配置日志"""
     log_level = config['logging_level'].upper()
-    logging.basicConfig(
-        level=getattr(logging, log_level, logging.INFO),
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(config["log_path"]),
-            logging.StreamHandler()
-        ]
+    logger.remove()  # 移除默认配置
+    logger.add(
+        config["log_path"],
+        level=log_level,
+        format="{time} - {name} - {level} - {message}",
+        rotation="10 MB",  # 设置日志文件大小
+        retention="10 days"  # 设置日志文件保留时间
     )
-    return logging.getLogger()
-
-def load_config(config_path):
-    with open(config_path, 'r') as config_file:
-        return json.load(config_file)
+    logger.add(
+        sys.stdout,
+        level=log_level,
+        format="{time} - {name} - {level} - {message}"
+    )
