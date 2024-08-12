@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 from .logger_config import logger
+import sys
 
 
 def center_crop(img, target_width=512, target_height=512):
@@ -38,6 +39,8 @@ def pre_process(data, at=[0., 0., 0.]):
     logger.debug(at_info)
     img = distort(img, at)
     img = center_crop(img)
+    # if img.shape[0] != 512 or img.shape[1] != 512:
+    #     logger.error("input size error.")
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img_float = img_gray.astype(np.float32) / 255.0
     mean = np.mean(img_float)

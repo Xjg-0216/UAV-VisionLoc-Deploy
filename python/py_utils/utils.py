@@ -41,7 +41,7 @@ def utm_to_latlon(position, zone_number, zone_letter):
     proj_latlon = pyproj.Proj(proj='latlong', datum='WGS84')
     transformer = pyproj.Transformer.from_proj(proj_utm, proj_latlon)
     lon, lat = transformer.transform(position[0], position[1])
-    return [lon, lat]
+    return [lat, lon]
 
 
 def handle_result(img_path, img_name, position, args):

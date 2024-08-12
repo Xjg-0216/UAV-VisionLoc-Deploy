@@ -1,99 +1,44 @@
 # README
 
-该仓库的目录结构为：
+## python板端部署运行步骤
 
+### 1. 确定摄像头设备的索引
 ```bash
-.
-|-- README.md
-|-- cpp
-|   |-- 3rdparty
-|   |   |-- librknn_api
-|   |   |-- opencv
-|   |   |-- rga
-|   |   |-- rk_mpi_mmz
-|   |   `-- stb
-|   |-- CMakeLists.txt
-|   |-- build
-|   |   `-- build_linux_aarch64
-|   |-- build.sh
-|   |-- faiss-demo
-|   |   |-- cpp
-|   |   |-- py
-|   |   `-- readme.md
-|   |-- include
-|   |   |-- load_database.h
-|   |   |-- postprocess.h
-|   |   `-- preprocess.h
-|   |-- install
-|   |   `-- UAV-VisionLoc-C_Linux
-|   |-- run.sh
-|   `-- src
-|       |-- load_database.cc
-|       |-- main.cc
-|       |-- postprocess.cc
-|       `-- preprocess.cc
-|-- data
-|   |-- database
-|   |   `-- database_features.h5
-|   `-- queries
-|       |-- *.jpg
-|       |-- test
-|       `-- test_sample.h5
-|-- docs
-|-- model
-|   |-- uvl_719.rknn
-|   `-- uvl_731.rknn
-`-- python
-    |-- eval.py
-    |-- main.py
-    |-- memory
-    |   `-- memory.md
-    |-- profile
-    |   |-- output.md
-    |   |-- profile.py
-    |   |-- profile_output.prof
-    |   `-- verbose_log.txt
-    |-- py_utils
-    |   |-- __init__.py
-    |   |-- __pycache__
-    |   |-- datasets.py
-    |   |-- onnx_executor.py
-    |   |-- pytorch_executor.py
-    |   `-- rknn_executor.py
-    `-- result
-        `-- *.jpg
-
-26 directories
+v4l2-ctl --list-devices
 ```
 
+### 2. 修改配置文件
+
+```bash
+model_path: "/home/xujg/code/UAV-VisionLoc-Deploy/model/uvl_v0807.rknn"  # RKNN模型路径
+img_save: true # 是否保存图像
+save_path: "/home/xujg/code/UAV-VisionLoc-Deploy/python/result"  #保存图像路径
+img_folder: "/home/xujg/code/UAV-VisionLoc-Deploy/data/queries"  #单图像测试，输入为摄像头时忽略
+path_local_database: "/home/xujg/code/UAV-VisionLoc-Deploy/data/database/database_features.h5" # 本地数据库特征路径
+logging_level: "DEBUG" # INFO， DEBUG, ...
+log_path: "/home/xujg/code/UAV-VisionLoc-Deploy/python/vtl.log" # 日志路径
+utm_zone_number: 50 # UTM区号
+utm_zone_letter: "N" # UTM北半球
+ip: "192.168.1.19" # ip
+port: 16300  # port
+camera_index: 82 # camera index
+output_type: "latlon"  # "utm" or "latlon"
+```
+
+### 3. 执行
+```bash
+chmod +x run.sh
+./run.sh
+```
+
+
+
+
+
+
+
+
+
+## others
 部分数据集及rknn模型文件见百度网盘: [链接](https://pan.baidu.com/s/1WRp7eV-7mwwrnDMuKwNaqw?pwd=xujg)
 
-**查看CPU/NPU/DDR可用频率**
-```bash
-cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_available_frequencies
-cat /sys/class/devfreq/fdab0000.npu/available_frequencies
-cat /sys/class/devfreq/dmc/available_frequencies
-```
-
-**设置CPU/NPU/DDR频率**
-```bash
-# 更改调节器为userspace
-echo userspace | sudo tee /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
-# 设置频率
-echo 1200000 | sudo tee /sys/devices/system/cpu/cpufreq/policy4/scaling_setspeed
-
-echo userspace | sudo tee /sys/class/devfreq/fdab0000.npu/governor
-echo 800000000 | sudo tee /sys/class/devfreq/fdab0000.npu/userspace/set_freq
-
-
-echo userspace | sudo tee /sys/class/devfreq/dmc/governor
-echo 1596000000 | sudo tee /sys/class/devfreq/dmc/userspace/set_freq
-```
-
-**查看当前CPU/NPU/DDR频率**
-
-```bash
-cat /sys/devices/system/cpu/cpufreq/policy4/scaling_cur_freq
-cat /sys/class/devfreq/fdab0000.npu/cur_freq
-cat /sys/class/devfreq/dmc/cur_freq
-```
