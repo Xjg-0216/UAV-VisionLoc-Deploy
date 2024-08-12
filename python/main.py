@@ -89,7 +89,7 @@ def process_data_thread(ca, pm, args, data_queue):
             # 捕获图像
             frame = ca.capture_image()
             input_data = pre_process(frame, attitude_data)
-            # input_data = cv2.resize(input_data, (512, 512))
+            input_data = cv2.resize(input_data, (512, 512))
             input_data = np.expand_dims(input_data, 0)
             position = pm.model_inference(input_data)
             if args.output_type == "lonlat":
