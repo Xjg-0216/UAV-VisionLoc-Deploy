@@ -1,0 +1,11 @@
+[Unit]
+Description=Run UAV-VisionLoc after all other services
+After=default.target
+
+[Service]
+ExecStart=/home/xujg/code/UAV-VisionLoc-Deploy/run.sh
+Restart=always
+User=xujg
+
+[Install]
+WantedBy=default.target

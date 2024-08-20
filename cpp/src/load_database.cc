@@ -109,6 +109,21 @@ DatabaseData *load_local_database(const char *path_local_database)
     }
 }
 
+void free_database_data(DatabaseData* db) {
+    if (db == NULL) return; // Check for NULL pointer to avoid issues
+
+    // Free the dynamically allocated arrays
+    if (db->features != NULL) {
+        free(db->features);
+    }
+    if (db->utms != NULL) {
+        free(db->utms);
+    }
+
+    // Free the DatabaseData structure itself if it was dynamically allocated
+    free(db);
+}
+
 // int main(int argc, char *argv[])
 // {
 //     if (argc != 2) {

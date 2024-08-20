@@ -37,4 +37,7 @@ std::pair<float, float> post_process(faiss::IndexFlatL2& index, float* result, D
     //     }
     //     return {y, x};
     // }
+    else{
+        return {0, 0};
+    }
 }

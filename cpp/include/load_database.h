@@ -18,7 +18,7 @@ typedef struct {
 
 // 函数声明
 DatabaseData* load_local_database(const char *path_local_database);
-
+void free_database_data(DatabaseData* db);
 #ifdef __cplusplus
 }
 #endif

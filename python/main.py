@@ -2,7 +2,6 @@ from py_utils.utils import load_config
 import argparse
 from py_utils.process_manager import ProcessManager
 from py_utils.utils import utm_to_latlon, AAIR
-from py_utils.logger_config import configure_logging
 import os
 import time
 from py_utils.pre_process import pre_process
@@ -89,7 +88,7 @@ def process_data_thread(ca, pm, args, data_queue):
             # 捕获图像
             frame = ca.capture_image()
             input_data = pre_process(frame, attitude_data)
-            input_data = cv2.resize(input_data, (512, 512))
+            # input_data = cv2.resize(input_data, (512, 512))
             input_data = np.expand_dims(input_data, 0)
             position = pm.model_inference(input_data)
             if args.output_type == "lonlat":
