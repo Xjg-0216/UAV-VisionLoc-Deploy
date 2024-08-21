@@ -128,7 +128,7 @@ cv::Mat preProcess(const std::string& pathStr, float contrastFactor) {
 }
 
 
-cv::Mat VideoPrerocess(cv::Mat& img, float contrastFactor, float roll, float pitch, float yaw) {
+cv::Mat VideoPrerocess(const cv::Mat& img, float contrastFactor, float roll, float pitch, float yaw) {
     // Load and distort image
     if (img.empty())
     {
@@ -163,11 +163,11 @@ cv::Mat VideoPrerocess(cv::Mat& img, float contrastFactor, float roll, float pit
     cv::warpPerspective(img, adjustedImage, matrix, img.size());
 
     // Center crop
-    img = centerCrop(adjustedImage, 512, 512);
+    adjustedImage = centerCrop(adjustedImage, 512, 512);
 
     // Convert to grayscale
     cv::Mat gray;
-    cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
+    cv::cvtColor(adjustedImage, gray, cv::COLOR_BGR2GRAY);
 
     // Adjust contrast using contrastFactor
     gray.convertTo(gray, CV_32F, 1 / 255.0);
