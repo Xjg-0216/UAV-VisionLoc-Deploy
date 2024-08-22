@@ -462,3 +462,846 @@
 [INFO][Wed Aug 21 17:40:45 2024] Saving image as 2024-08-21/151_38.2433_116.173.jpg
 [INFO][Wed Aug 21 17:40:45 2024] Predict position: (439590.718750, 4220690.500000)
 [INFO][Wed Aug 21 17:40:45 2024] Real position: (38.243279, 116.173378)
+[INFO][Thu Aug 22 13:18:10 2024] Log file initialized.
+[INFO][Thu Aug 22 13:18:10 2024] Program started.
+[INFO][Thu Aug 22 13:18:10 2024] Model path: ./install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn, Database path: ./install/UAV-VisionLoc-C_Linux/model/database_features.h5
+[INFO][Thu Aug 22 13:18:11 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:18:11 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:18:11 2024] Starting UDP receive thread...
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:11 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:12 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:13 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:14 2024] Failed to get frame from video stream.
+[INFO][Thu Aug 22 13:18:34 2024] Log file initialized.
+[INFO][Thu Aug 22 13:18:34 2024] Program started.
+[INFO][Thu Aug 22 13:18:34 2024] Model path: ./install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn, Database path: ./install/UAV-VisionLoc-C_Linux/model/database_features.h5
+[INFO][Thu Aug 22 13:18:35 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:18:35 2024] Starting UDP receive thread...
+[WARN][Thu Aug 22 13:18:35 2024] Failed to get frame from video stream.
+[WARN][Thu Aug 22 13:18:35 2024] Failed to get frame from video stream.
+[INFO][Thu Aug 22 13:18:35 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:35 2024] Saving image as 2024-08-22/27_38.4459_116.168.jpg
+[INFO][Thu Aug 22 13:18:35 2024] Predict position: (437836.187500, 4220390.500000)
+[INFO][Thu Aug 22 13:18:35 2024] Real position: (38.445927, 116.168007)
+[INFO][Thu Aug 22 13:18:35 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:35 2024] Saving image as 2024-08-22/29_38.6863_116.488.jpg
+[INFO][Thu Aug 22 13:18:35 2024] Predict position: (437751.718750, 4220381.000000)
+[INFO][Thu Aug 22 13:18:35 2024] Real position: (38.686333, 116.488106)
+[INFO][Thu Aug 22 13:18:35 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:36 2024] Saving image as 2024-08-22/30_38.1589_116.348.jpg
+[INFO][Thu Aug 22 13:18:36 2024] Predict position: (437624.187500, 4220231.500000)
+[INFO][Thu Aug 22 13:18:36 2024] Real position: (38.158947, 116.348419)
+[INFO][Thu Aug 22 13:18:36 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:36 2024] Saving image as 2024-08-22/33_38.069_116.736.jpg
+[INFO][Thu Aug 22 13:18:36 2024] Predict position: (439602.406250, 4220728.500000)
+[INFO][Thu Aug 22 13:18:36 2024] Real position: (38.069042, 116.735657)
+[INFO][Thu Aug 22 13:18:36 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:36 2024] Saving image as 2024-08-22/34_38.4827_116.711.jpg
+[INFO][Thu Aug 22 13:18:36 2024] Predict position: (439519.968750, 4221343.500000)
+[INFO][Thu Aug 22 13:18:36 2024] Real position: (38.482746, 116.711121)
+[INFO][Thu Aug 22 13:18:36 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:36 2024] Saving image as 2024-08-22/35_38.8883_116.775.jpg
+[INFO][Thu Aug 22 13:18:36 2024] Predict position: (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:18:36 2024] Real position: (38.888287, 116.774956)
+[INFO][Thu Aug 22 13:18:36 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:36 2024] Saving image as 2024-08-22/36_38.0438_116.434.jpg
+[INFO][Thu Aug 22 13:18:36 2024] Predict position: (437836.187500, 4220390.500000)
+[INFO][Thu Aug 22 13:18:36 2024] Real position: (38.043842, 116.433655)
+[INFO][Thu Aug 22 13:18:36 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:36 2024] Saving image as 2024-08-22/38_38.3028_116.47.jpg
+[INFO][Thu Aug 22 13:18:36 2024] Predict position: (438736.937500, 4220775.000000)
+[INFO][Thu Aug 22 13:18:36 2024] Real position: (38.302769, 116.470222)
+[INFO][Thu Aug 22 13:18:36 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:36 2024] Saving image as 2024-08-22/39_38.2482_116.458.jpg
+[INFO][Thu Aug 22 13:18:36 2024] Predict position: (437734.468750, 4220265.500000)
+[INFO][Thu Aug 22 13:18:36 2024] Real position: (38.248169, 116.458481)
+[INFO][Thu Aug 22 13:18:36 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:37 2024] Saving image as 2024-08-22/41_38.1902_116.392.jpg
+[INFO][Thu Aug 22 13:18:37 2024] Predict position: (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:18:37 2024] Real position: (38.190193, 116.392319)
+[INFO][Thu Aug 22 13:18:37 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:18:37 2024] Saving image as 2024-08-22/42_38.7617_116.505.jpg
+[INFO][Thu Aug 22 13:18:37 2024] Predict position: (437734.468750, 4220265.500000)
+[INFO][Thu Aug 22 13:18:37 2024] Real position: (38.761726, 116.504524)
+[INFO][Thu Aug 22 13:18:37 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:53 2024] Log file initialized.
+[INFO][Thu Aug 22 13:28:53 2024] Program started.
+[INFO][Thu Aug 22 13:28:53 2024] Model path: ./install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn, Database path: ./install/UAV-VisionLoc-C_Linux/model/database_features.h5
+[INFO][Thu Aug 22 13:28:53 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:28:53 2024] Starting UDP receive thread...
+[INFO][Thu Aug 22 13:28:54 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:54 2024] Saving image as 2024-08-22/46_38.6484_116.1.jpg
+[INFO][Thu Aug 22 13:28:54 2024] Predict position: (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:28:54 2024] Real position: (38.648354, 116.099709)
+[INFO][Thu Aug 22 13:28:54 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:54 2024] Saving image as 2024-08-22/47_38.2945_116.777.jpg
+[INFO][Thu Aug 22 13:28:54 2024] Predict position: (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:28:54 2024] Real position: (38.294456, 116.776611)
+[INFO][Thu Aug 22 13:28:54 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:54 2024] Saving image as 2024-08-22/49_38.9392_116.256.jpg
+[INFO][Thu Aug 22 13:28:54 2024] Predict position: (437734.468750, 4220265.500000)
+[INFO][Thu Aug 22 13:28:54 2024] Real position: (38.939243, 116.255554)
+[INFO][Thu Aug 22 13:28:54 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:54 2024] Saving image as 2024-08-22/50_38.5588_116.029.jpg
+[INFO][Thu Aug 22 13:28:54 2024] Predict position: (437752.093750, 4220431.000000)
+[INFO][Thu Aug 22 13:28:54 2024] Real position: (38.558765, 116.029129)
+[INFO][Thu Aug 22 13:28:54 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:54 2024] Saving image as 2024-08-22/52_38.1099_116.336.jpg
+[INFO][Thu Aug 22 13:28:54 2024] Predict position: (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:28:54 2024] Real position: (38.109859, 116.336220)
+[INFO][Thu Aug 22 13:28:54 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:54 2024] Saving image as 2024-08-22/53_38.943_116.302.jpg
+[INFO][Thu Aug 22 13:28:54 2024] Predict position: (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:28:54 2024] Real position: (38.943012, 116.302200)
+[INFO][Thu Aug 22 13:28:54 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:55 2024] Saving image as 2024-08-22/54_38.8046_116.871.jpg
+[INFO][Thu Aug 22 13:28:55 2024] Predict position: (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:28:55 2024] Real position: (38.804569, 116.870796)
+[INFO][Thu Aug 22 13:28:55 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:55 2024] Saving image as 2024-08-22/55_38.9683_116.803.jpg
+[INFO][Thu Aug 22 13:28:55 2024] Predict position: (439615.906250, 4220690.500000)
+[INFO][Thu Aug 22 13:28:55 2024] Real position: (38.968319, 116.803070)
+[INFO][Thu Aug 22 13:28:55 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:55 2024] Saving image as 2024-08-22/57_38.701_116.594.jpg
+[INFO][Thu Aug 22 13:28:55 2024] Predict position: (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:28:55 2024] Real position: (38.700989, 116.593758)
+[INFO][Thu Aug 22 13:28:55 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:28:55 2024] Saving image as 2024-08-22/58_38.2311_116.96.jpg
+[INFO][Thu Aug 22 13:28:55 2024] Predict position: (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:28:55 2024] Real position: (38.231106, 116.960136)
+[INFO][Thu Aug 22 13:28:55 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:02 2024] Log file initialized.
+[INFO][Thu Aug 22 13:29:02 2024] Program started.
+[INFO][Thu Aug 22 13:29:02 2024] Model path: ./install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn, Database path: ./install/UAV-VisionLoc-C_Linux/model/database_features.h5
+[INFO][Thu Aug 22 13:29:02 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:29:02 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:29:02 2024] Starting UDP receive thread...
+[INFO][Thu Aug 22 13:29:02 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:02 2024] Saving image as 2024-08-22/133_38.606_116.532.jpg
+[INFO][Thu Aug 22 13:29:02 2024] Predict position: (437247.250000, 4220360.000000)
+[INFO][Thu Aug 22 13:29:02 2024] Real position: (38.605980, 116.532402)
+[INFO][Thu Aug 22 13:29:03 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:03 2024] Saving image as 2024-08-22/135_38.5167_116.61.jpg
+[INFO][Thu Aug 22 13:29:03 2024] Predict position: (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:29:03 2024] Real position: (38.516663, 116.610321)
+[INFO][Thu Aug 22 13:29:03 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:03 2024] Saving image as 2024-08-22/137_38.6595_116.385.jpg
+[INFO][Thu Aug 22 13:29:03 2024] Predict position: (437273.781250, 4220535.500000)
+[INFO][Thu Aug 22 13:29:03 2024] Real position: (38.659481, 116.385155)
+[INFO][Thu Aug 22 13:29:03 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:03 2024] Saving image as 2024-08-22/138_38.036_116.832.jpg
+[INFO][Thu Aug 22 13:29:03 2024] Predict position: (438086.500000, 4221382.500000)
+[INFO][Thu Aug 22 13:29:03 2024] Real position: (38.035980, 116.831573)
+[INFO][Thu Aug 22 13:29:03 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:03 2024] Saving image as 2024-08-22/139_38.6636_116.836.jpg
+[INFO][Thu Aug 22 13:29:03 2024] Predict position: (437273.781250, 4220535.500000)
+[INFO][Thu Aug 22 13:29:03 2024] Real position: (38.663570, 116.835800)
+[INFO][Thu Aug 22 13:29:03 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:03 2024] Saving image as 2024-08-22/140_38.8733_116.613.jpg
+[INFO][Thu Aug 22 13:29:03 2024] Predict position: (437734.468750, 4220265.500000)
+[INFO][Thu Aug 22 13:29:03 2024] Real position: (38.873287, 116.612518)
+[INFO][Thu Aug 22 13:29:03 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:03 2024] Saving image as 2024-08-22/142_38.3867_116.838.jpg
+[INFO][Thu Aug 22 13:29:03 2024] Predict position: (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:29:03 2024] Real position: (38.386662, 116.837959)
+[INFO][Thu Aug 22 13:29:03 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:03 2024] Saving image as 2024-08-22/143_38.4066_116.832.jpg
+[INFO][Thu Aug 22 13:29:03 2024] Predict position: (437752.093750, 4220431.000000)
+[INFO][Thu Aug 22 13:29:03 2024] Real position: (38.406563, 116.832260)
+[INFO][Thu Aug 22 13:29:04 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:04 2024] Saving image as 2024-08-22/145_38.5767_116.jpg
+[INFO][Thu Aug 22 13:29:04 2024] Predict position: (437734.468750, 4220265.500000)
+[INFO][Thu Aug 22 13:29:04 2024] Real position: (38.576683, 116.000107)
+[INFO][Thu Aug 22 13:29:04 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:04 2024] Saving image as 2024-08-22/146_38.3473_116.202.jpg
+[INFO][Thu Aug 22 13:29:04 2024] Predict position: (437582.500000, 4220166.500000)
+[INFO][Thu Aug 22 13:29:04 2024] Real position: (38.347324, 116.201561)
+[INFO][Thu Aug 22 13:29:04 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:04 2024] Saving image as 2024-08-22/147_38.0694_116.392.jpg
+[INFO][Thu Aug 22 13:29:04 2024] Predict position: (439615.906250, 4220690.500000)
+[INFO][Thu Aug 22 13:29:04 2024] Real position: (38.069370, 116.392174)
+[INFO][Thu Aug 22 13:29:04 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:04 2024] Saving image as 2024-08-22/149_38.2607_116.083.jpg
+[INFO][Thu Aug 22 13:29:04 2024] Predict position: (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:29:04 2024] Real position: (38.260666, 116.082565)
+[INFO][Thu Aug 22 13:29:04 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:04 2024] Saving image as 2024-08-22/150_38.6607_116.444.jpg
+[INFO][Thu Aug 22 13:29:04 2024] Predict position: (437826.156250, 4220280.500000)
+[INFO][Thu Aug 22 13:29:04 2024] Real position: (38.660656, 116.444412)
+[INFO][Thu Aug 22 13:29:04 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:04 2024] Saving image as 2024-08-22/151_38.7763_116.188.jpg
+[INFO][Thu Aug 22 13:29:04 2024] Predict position: (437734.468750, 4220265.500000)
+[INFO][Thu Aug 22 13:29:04 2024] Real position: (38.776295, 116.188004)
+[INFO][Thu Aug 22 13:29:04 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:04 2024] Saving image as 2024-08-22/153_38.4276_116.733.jpg
+[INFO][Thu Aug 22 13:29:04 2024] Predict position: (437836.187500, 4220390.500000)
+[INFO][Thu Aug 22 13:29:04 2024] Real position: (38.427589, 116.733467)
+[INFO][Thu Aug 22 13:29:05 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:05 2024] Saving image as 2024-08-22/154_38.2409_116.017.jpg
+[INFO][Thu Aug 22 13:29:05 2024] Predict position: (439602.406250, 4220728.500000)
+[INFO][Thu Aug 22 13:29:05 2024] Real position: (38.240944, 116.016556)
+[INFO][Thu Aug 22 13:29:05 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:05 2024] Saving image as 2024-08-22/155_38.8377_116.864.jpg
+[INFO][Thu Aug 22 13:29:05 2024] Predict position: (438281.625000, 4220775.500000)
+[INFO][Thu Aug 22 13:29:05 2024] Real position: (38.837666, 116.863724)
+[INFO][Thu Aug 22 13:29:05 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:05 2024] Saving image as 2024-08-22/157_38.3349_116.721.jpg
+[INFO][Thu Aug 22 13:29:05 2024] Predict position: (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:29:05 2024] Real position: (38.334869, 116.720963)
+[INFO][Thu Aug 22 13:29:05 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:05 2024] Saving image as 2024-08-22/159_38.2527_116.594.jpg
+[INFO][Thu Aug 22 13:29:05 2024] Predict position: (438736.937500, 4220775.000000)
+[INFO][Thu Aug 22 13:29:05 2024] Real position: (38.252724, 116.593719)
+[INFO][Thu Aug 22 13:29:05 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:05 2024] Saving image as 2024-08-22/160_38.6163_116.393.jpg
+[INFO][Thu Aug 22 13:29:05 2024] Predict position: (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:29:05 2024] Real position: (38.616344, 116.392853)
+[INFO][Thu Aug 22 13:29:05 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:05 2024] Saving image as 2024-08-22/161_38.0892_116.012.jpg
+[INFO][Thu Aug 22 13:29:05 2024] Predict position: (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:29:05 2024] Real position: (38.089226, 116.012367)
+[INFO][Thu Aug 22 13:29:05 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:05 2024] Saving image as 2024-08-22/163_38.786_116.534.jpg
+[INFO][Thu Aug 22 13:29:05 2024] Predict position: (439615.906250, 4220690.500000)
+[INFO][Thu Aug 22 13:29:05 2024] Real position: (38.785973, 116.534134)
+[INFO][Thu Aug 22 13:29:05 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:06 2024] Saving image as 2024-08-22/164_38.5406_116.093.jpg
+[INFO][Thu Aug 22 13:29:06 2024] Predict position: (439519.968750, 4221343.500000)
+[INFO][Thu Aug 22 13:29:06 2024] Real position: (38.540573, 116.092987)
+[INFO][Thu Aug 22 13:29:06 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:06 2024] Saving image as 2024-08-22/165_38.7891_116.098.jpg
+[INFO][Thu Aug 22 13:29:06 2024] Predict position: (437223.781250, 4220586.000000)
+[INFO][Thu Aug 22 13:29:06 2024] Real position: (38.789135, 116.097755)
+[INFO][Thu Aug 22 13:29:06 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:06 2024] Saving image as 2024-08-22/166_38.82_116.508.jpg
+[INFO][Thu Aug 22 13:29:06 2024] Predict position: (437573.812500, 4220232.000000)
+[INFO][Thu Aug 22 13:29:06 2024] Real position: (38.820007, 116.508148)
+[INFO][Thu Aug 22 13:29:06 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:29:06 2024] Saving image as 2024-08-22/168_38.0787_116.756.jpg
+[INFO][Thu Aug 22 13:41:21 2024] Log file initialized.
+[INFO][Thu Aug 22 13:41:21 2024] Program started.
+[INFO][Thu Aug 22 13:41:21 2024] Model path: ./install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn, Database path: ./install/UAV-VisionLoc-C_Linux/model/database_features.h5
+[INFO][Thu Aug 22 13:41:22 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:41:22 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:41:22 2024] Starting UDP receive thread...
+[INFO][Thu Aug 22 13:41:22 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:22 2024] Saving image as 2024-08-22/13-41-22_38.4928_116.251.jpg
+[INFO][Thu Aug 22 13:41:22 2024] Predict position(UTM): (437248.593750, 4220535.500000)
+[INFO][Thu Aug 22 13:41:22 2024] Real position: (38.492805, 116.250664)
+[INFO][Thu Aug 22 13:41:22 2024] Real position(UTM): (434652.550277, 4288974.841352)
+[INFO][Thu Aug 22 13:41:22 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:22 2024] Saving image as 2024-08-22/13-41-22_38.718_116.825.jpg
+[INFO][Thu Aug 22 13:41:23 2024] Predict position(UTM): (437273.781250, 4220535.500000)
+[INFO][Thu Aug 22 13:41:23 2024] Real position: (38.718002, 116.824989)
+[INFO][Thu Aug 22 13:41:23 2024] Real position(UTM): (484785.542929, 4314003.875375)
+[INFO][Thu Aug 22 13:41:23 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:23 2024] Saving image as 2024-08-22/13-41-23_38.5018_116.697.jpg
+[INFO][Thu Aug 22 13:41:23 2024] Predict position(UTM): (439615.906250, 4220690.500000)
+[INFO][Thu Aug 22 13:41:23 2024] Real position: (38.501778, 116.697395)
+[INFO][Thu Aug 22 13:41:23 2024] Real position(UTM): (473614.136563, 4289872.624682)
+[INFO][Thu Aug 22 13:41:23 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:23 2024] Saving image as 2024-08-22/13-41-23_38.0049_116.997.jpg
+[INFO][Thu Aug 22 13:41:23 2024] Predict position(UTM): (437750.562500, 4220281.000000)
+[INFO][Thu Aug 22 13:41:23 2024] Real position: (38.004894, 116.996811)
+[INFO][Thu Aug 22 13:41:23 2024] Real position(UTM): (499720.025299, 4234370.004804)
+[INFO][Thu Aug 22 13:41:23 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:23 2024] Saving image as 2024-08-22/13-41-23_38.2737_116.75.jpg
+[INFO][Thu Aug 22 13:41:23 2024] Predict position(UTM): (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:41:23 2024] Real position: (38.273678, 116.749512)
+[INFO][Thu Aug 22 13:41:23 2024] Real position(UTM): (478089.763284, 4264396.474606)
+[INFO][Thu Aug 22 13:41:24 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:24 2024] Saving image as 2024-08-22/13-41-24_38.2965_116.757.jpg
+[INFO][Thu Aug 22 13:41:24 2024] Predict position(UTM): (437235.593750, 4220922.000000)
+[INFO][Thu Aug 22 13:41:24 2024] Real position: (38.296513, 116.757423)
+[INFO][Thu Aug 22 13:41:24 2024] Real position(UTM): (478788.446208, 4266945.297198)
+[INFO][Thu Aug 22 13:41:24 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:24 2024] Saving image as 2024-08-22/13-41-24_38.4368_116.985.jpg
+[INFO][Thu Aug 22 13:41:24 2024] Predict position(UTM): (439414.906250, 4220767.000000)
+[INFO][Thu Aug 22 13:41:24 2024] Real position: (38.436817, 116.985306)
+[INFO][Thu Aug 22 13:41:24 2024] Real position(UTM): (498717.577287, 4282598.681379)
+[INFO][Thu Aug 22 13:41:24 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:24 2024] Saving image as 2024-08-22/13-41-24_38.9347_116.599.jpg
+[INFO][Thu Aug 22 13:41:24 2024] Predict position(UTM): (438011.593750, 4220263.500000)
+[INFO][Thu Aug 22 13:41:24 2024] Real position: (38.934650, 116.598694)
+[INFO][Thu Aug 22 13:41:24 2024] Real position(UTM): (465218.193663, 4338223.534915)
+[INFO][Thu Aug 22 13:41:24 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:24 2024] Saving image as 2024-08-22/13-41-24_38.7365_116.951.jpg
+[INFO][Thu Aug 22 13:41:24 2024] Predict position(UTM): (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:41:24 2024] Real position: (38.736477, 116.951416)
+[INFO][Thu Aug 22 13:41:24 2024] Real position(UTM): (495777.466969, 4316060.840596)
+[INFO][Thu Aug 22 13:41:24 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:24 2024] Saving image as 2024-08-22/13-41-24_38.0669_116.053.jpg
+[INFO][Thu Aug 22 13:41:24 2024] Predict position(UTM): (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:41:24 2024] Real position: (38.066936, 116.052773)
+[INFO][Thu Aug 22 13:41:24 2024] Real position(UTM): (416910.689893, 4241508.834333)
+[INFO][Thu Aug 22 13:41:24 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:24 2024] Saving image as 2024-08-22/13-41-24_38.5843_116.625.jpg
+[INFO][Thu Aug 22 13:41:24 2024] Predict position(UTM): (439615.906250, 4220690.500000)
+[INFO][Thu Aug 22 13:41:24 2024] Real position: (38.584332, 116.624809)
+[INFO][Thu Aug 22 13:41:24 2024] Real position(UTM): (467322.294361, 4299101.497393)
+[INFO][Thu Aug 22 13:41:24 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:24 2024] Saving image as 2024-08-22/13-41-24_38.9154_116.001.jpg
+[INFO][Thu Aug 22 13:41:24 2024] Predict position(UTM): (438231.218750, 4220775.500000)
+[INFO][Thu Aug 22 13:41:24 2024] Real position: (38.915398, 116.001198)
+[INFO][Thu Aug 22 13:41:24 2024] Real position(UTM): (413408.130933, 4336247.167506)
+[INFO][Thu Aug 22 13:41:24 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:25 2024] Saving image as 2024-08-22/13-41-25_38.7887_116.71.jpg
+[INFO][Thu Aug 22 13:41:25 2024] Predict position(UTM): (439615.906250, 4220690.500000)
+[INFO][Thu Aug 22 13:41:25 2024] Real position: (38.788742, 116.710289)
+[INFO][Thu Aug 22 13:41:25 2024] Real position(UTM): (474838.965013, 4321914.456335)
+[INFO][Thu Aug 22 13:41:25 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:25 2024] Saving image as 2024-08-22/13-41-25_38.8773_116.549.jpg
+[INFO][Thu Aug 22 13:41:25 2024] Predict position(UTM): (439040.218750, 4221196.500000)
+[INFO][Thu Aug 22 13:41:25 2024] Real position: (38.877308, 116.549156)
+[INFO][Thu Aug 22 13:41:25 2024] Real position(UTM): (460893.225219, 4331829.189172)
+[INFO][Thu Aug 22 13:41:25 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:41:25 2024] Saving image as 2024-08-22/13-41-25_38.3684_116.551.jpg
+[INFO][Thu Aug 22 13:41:25 2024] Predict position(UTM): (437752.093750, 4220431.000000)
+[INFO][Thu Aug 22 13:41:25 2024] Real position: (38.368370, 116.550850)
+[INFO][Thu Aug 22 13:41:25 2024] Real position(UTM): (460763.802048, 4275001.128477)
+[INFO][Thu Aug 22 13:46:45 2024] Log file initialized.
+[INFO][Thu Aug 22 13:46:45 2024] Program started.
+[INFO][Thu Aug 22 13:46:45 2024] Model path: ./install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn, Database path: ./install/UAV-VisionLoc-C_Linux/model/database_features.h5
+[DEBUG][Thu Aug 22 13:46:45 2024] Database loaded successfully.
+[DEBUG][Thu Aug 22 13:46:45 2024] FAISS index initialized and database features added.
+[DEBUG][Thu Aug 22 13:46:45 2024] Model loaded successfully.
+[DEBUG][Thu Aug 22 13:46:45 2024] RKNN context initialized successfully.
+[DEBUG][Thu Aug 22 13:46:45 2024] RKNN core mask set successfully.
+[DEBUG][Thu Aug 22 13:46:45 2024] UVC context initialized successfully.
+[DEBUG][Thu Aug 22 13:46:45 2024] UVC device found successfully.
+[DEBUG][Thu Aug 22 13:46:45 2024] UVC device opened successfully.
+[DEBUG][Thu Aug 22 13:46:45 2024] Stream control format size obtained successfully.
+[DEBUG][Thu Aug 22 13:46:45 2024] UDP socket created successfully.
+[INFO][Thu Aug 22 13:46:45 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:46:45 2024] Starting camera capture thread...
+[DEBUG][Thu Aug 22 13:46:45 2024] UDP socket bound successfully.
+[INFO][Thu Aug 22 13:46:45 2024] Starting UDP receive thread...
+[DEBUG][Thu Aug 22 13:46:45 2024] Video stream opened successfully.
+[DEBUG][Thu Aug 22 13:46:45 2024] Video stream started successfully.
+[DEBUG][Thu Aug 22 13:46:45 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:46:45 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:45 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:46:45 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:46:45 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:45 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:46:45 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:46:45 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:46:45 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:45 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:46:45 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:46:45 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:46:45 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:46:45 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:45 2024] Preprocess time: 31.740211 ms
+[INFO][Thu Aug 22 13:46:46 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:46:46 2024] Inference time: 92.483829 ms
+[DEBUG][Thu Aug 22 13:46:46 2024] Postprocess time: 44.539545 ms
+[INFO][Thu Aug 22 13:46:46 2024] Saving image as 2024-08-22/13-46-46_38.9039_116.947.jpg
+[INFO][Thu Aug 22 13:46:46 2024] Predict position(UTM): (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:46:46 2024] Real position: (38.903904, 116.947083)
+[INFO][Thu Aug 22 13:46:46 2024] Real position(UTM): (495411.590745, 4334757.348671)
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:46:46 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:46 2024] Preprocess time: 16.709632 ms
+[INFO][Thu Aug 22 13:46:46 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:46:46 2024] Inference time: 70.632734 ms
+[DEBUG][Thu Aug 22 13:46:46 2024] Postprocess time: 41.212102 ms
+[INFO][Thu Aug 22 13:46:46 2024] Saving image as 2024-08-22/13-46-46_38.6186_116.603.jpg
+[INFO][Thu Aug 22 13:46:46 2024] Predict position(UTM): (437752.093750, 4220431.000000)
+[INFO][Thu Aug 22 13:46:46 2024] Real position: (38.618633, 116.602638)
+[INFO][Thu Aug 22 13:46:46 2024] Real position(UTM): (465407.744521, 4302935.394304)
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:46:46 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:46 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:46:46 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:46:46 2024] Preprocess time: 13.786953 ms
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame captured from camera.
+[INFO][Thu Aug 22 13:46:46 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:46:46 2024] Inference time: 57.248753 ms
+[DEBUG][Thu Aug 22 13:46:46 2024] Postprocess time: 39.923185 ms
+[INFO][Thu Aug 22 13:46:46 2024] Saving image as 2024-08-22/13-46-46_38.8864_116.734.jpg
+[INFO][Thu Aug 22 13:46:46 2024] Predict position(UTM): (437223.406250, 4220536.000000)
+[INFO][Thu Aug 22 13:46:46 2024] Real position: (38.886356, 116.733849)
+[INFO][Thu Aug 22 13:46:46 2024] Real position(UTM): (476916.642333, 4332811.980091)
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:46:46 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:46 2024] Preprocess time: 14.973200 ms
+[INFO][Thu Aug 22 13:46:46 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:46:46 2024] Inference time: 58.646174 ms
+[DEBUG][Thu Aug 22 13:46:46 2024] Postprocess time: 42.529020 ms
+[INFO][Thu Aug 22 13:46:46 2024] Saving image as 2024-08-22/13-46-46_38.194_116.78.jpg
+[INFO][Thu Aug 22 13:46:46 2024] Predict position(UTM): (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:46:46 2024] Real position: (38.193970, 116.780434)
+[INFO][Thu Aug 22 13:46:46 2024] Real position(UTM): (480773.536654, 4255493.034300)
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:46 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:46:46 2024] Preprocess time: 13.816995 ms
+[INFO][Thu Aug 22 13:46:46 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:46:46 2024] Inference time: 57.095915 ms
+[DEBUG][Thu Aug 22 13:46:46 2024] Postprocess time: 38.479804 ms
+[INFO][Thu Aug 22 13:46:46 2024] Saving image as 2024-08-22/13-46-46_38.9485_116.123.jpg
+[INFO][Thu Aug 22 13:46:46 2024] Predict position(UTM): (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:46:46 2024] Real position: (38.948544, 116.122757)
+[INFO][Thu Aug 22 13:46:46 2024] Real position(UTM): (423982.367922, 4339900.445825)
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:46:46 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:46 2024] Preprocess time: 12.645624 ms
+[INFO][Thu Aug 22 13:46:46 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:46:46 2024] Inference time: 58.519295 ms
+[DEBUG][Thu Aug 22 13:46:46 2024] Postprocess time: 38.130834 ms
+[INFO][Thu Aug 22 13:46:46 2024] Saving image as 2024-08-22/13-46-46_38.0213_116.535.jpg
+[INFO][Thu Aug 22 13:46:46 2024] Predict position(UTM): (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:46:46 2024] Real position: (38.021339, 116.534920)
+[INFO][Thu Aug 22 13:46:46 2024] Real position(UTM): (459178.921486, 4236257.495749)
+[DEBUG][Thu Aug 22 13:46:46 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:46:46 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:46:46 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:46:46 2024] Preprocess time: 12.264111 ms
+[INFO][Thu Aug 22 13:46:46 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:46:46 2024] Inference time: 57.072664 ms
+[INFO][Thu Aug 22 13:53:38 2024] Log file initialized.
+[INFO][Thu Aug 22 13:53:38 2024] Program started.
+[INFO][Thu Aug 22 13:53:38 2024] Model path: ./install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn, Database path: ./install/UAV-VisionLoc-C_Linux/model/database_features.h5
+[DEBUG][Thu Aug 22 13:53:38 2024] Database loaded successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] FAISS index initialized and database features added.
+[DEBUG][Thu Aug 22 13:53:38 2024] Model loaded successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] RKNN context initialized successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] RKNN core mask set successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] UVC context initialized successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] UVC device found successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] UVC device opened successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] Stream control format size obtained successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] UDP socket created successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] UDP socket bound successfully.
+[INFO][Thu Aug 22 13:53:38 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:53:38 2024] Starting UDP receive thread...
+[DEBUG][Thu Aug 22 13:53:38 2024] Video stream opened successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:38 2024] Video stream started successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:53:38 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:38 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:38 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:53:38 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:38 2024] Preprocess time: 31.315943 ms
+[INFO][Thu Aug 22 13:53:38 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:53:38 2024] Inference time: 140.913326 ms
+[DEBUG][Thu Aug 22 13:53:38 2024] Postprocess time: 50.131209 ms
+[INFO][Thu Aug 22 13:53:38 2024] Saving image as 2024-08-22_13-53-38/13-53-38_38.1754_116.906.jpg
+[INFO][Thu Aug 22 13:53:39 2024] Predict position(UTM): (437752.093750, 4220431.000000)
+[INFO][Thu Aug 22 13:53:39 2024] Real position: (38.175438, 116.906395)
+[INFO][Thu Aug 22 13:53:39 2024] Real position(UTM): (491801.343637, 4253414.658398)
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:39 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:53:39 2024] Failed to get frame from video stream.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:39 2024] Preprocess time: 33.414389 ms
+[INFO][Thu Aug 22 13:53:39 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:53:39 2024] Inference time: 91.616294 ms
+[DEBUG][Thu Aug 22 13:53:39 2024] Postprocess time: 50.907635 ms
+[INFO][Thu Aug 22 13:53:39 2024] Saving image as 2024-08-22_13-53-38/13-53-39_38.0728_116.392.jpg
+[INFO][Thu Aug 22 13:53:39 2024] Predict position(UTM): (437573.625000, 4220207.000000)
+[INFO][Thu Aug 22 13:53:39 2024] Real position: (38.072845, 116.391640)
+[INFO][Thu Aug 22 13:53:39 2024] Real position(UTM): (446640.227203, 4242044.371485)
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:39 2024] Preprocess time: 13.943614 ms
+[INFO][Thu Aug 22 13:53:39 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:53:39 2024] Inference time: 88.627376 ms
+[DEBUG][Thu Aug 22 13:53:39 2024] Postprocess time: 50.356670 ms
+[INFO][Thu Aug 22 13:53:39 2024] Saving image as 2024-08-22_13-53-38/13-53-39_38.2336_116.337.jpg
+[INFO][Thu Aug 22 13:53:39 2024] Predict position(UTM): (437573.625000, 4220207.000000)
+[INFO][Thu Aug 22 13:53:39 2024] Real position: (38.233620, 116.336891)
+[INFO][Thu Aug 22 13:53:39 2024] Real position(UTM): (441965.687963, 4260010.349069)
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:39 2024] Preprocess time: 14.377328 ms
+[INFO][Thu Aug 22 13:53:39 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:53:39 2024] Inference time: 75.874238 ms
+[DEBUG][Thu Aug 22 13:53:39 2024] Postprocess time: 47.929760 ms
+[INFO][Thu Aug 22 13:53:39 2024] Saving image as 2024-08-22_13-53-38/13-53-39_38.2806_116.435.jpg
+[INFO][Thu Aug 22 13:53:39 2024] Predict position(UTM): (437573.625000, 4220207.000000)
+[INFO][Thu Aug 22 13:53:39 2024] Real position: (38.280556, 116.434914)
+[INFO][Thu Aug 22 13:53:39 2024] Real position(UTM): (450576.346618, 4265223.074379)
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:39 2024] Preprocess time: 13.159894 ms
+[INFO][Thu Aug 22 13:53:39 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:53:39 2024] Inference time: 58.355449 ms
+[DEBUG][Thu Aug 22 13:53:39 2024] Postprocess time: 37.359236 ms
+[INFO][Thu Aug 22 13:53:39 2024] Saving image as 2024-08-22_13-53-38/13-53-39_38.3481_116.264.jpg
+[INFO][Thu Aug 22 13:53:39 2024] Predict position(UTM): (438026.625000, 4220375.500000)
+[INFO][Thu Aug 22 13:53:39 2024] Real position: (38.348122, 116.264282)
+[INFO][Thu Aug 22 13:53:39 2024] Real position(UTM): (435712.078231, 4272817.097530)
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] Preprocess time: 16.003976 ms
+[INFO][Thu Aug 22 13:53:39 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:53:39 2024] Inference time: 60.095682 ms
+[DEBUG][Thu Aug 22 13:53:39 2024] Postprocess time: 40.258152 ms
+[INFO][Thu Aug 22 13:53:39 2024] Saving image as 2024-08-22_13-53-38/13-53-39_38.2575_116.912.jpg
+[INFO][Thu Aug 22 13:53:39 2024] Predict position(UTM): (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:53:39 2024] Real position: (38.257530, 116.912323)
+[INFO][Thu Aug 22 13:53:39 2024] Real position(UTM): (492329.190332, 4262580.830079)
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:39 2024] Preprocess time: 14.088574 ms
+[INFO][Thu Aug 22 13:53:39 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:53:39 2024] Inference time: 57.269642 ms
+[DEBUG][Thu Aug 22 13:53:39 2024] Postprocess time: 38.666796 ms
+[INFO][Thu Aug 22 13:53:39 2024] Saving image as 2024-08-22_13-53-38/13-53-39_38.936_116.436.jpg
+[INFO][Thu Aug 22 13:53:39 2024] Predict position(UTM): (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:53:39 2024] Real position: (38.935951, 116.436104)
+[INFO][Thu Aug 22 13:53:39 2024] Real position(UTM): (451127.082159, 4338401.228032)
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:39 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:39 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:39 2024] Preprocess time: 13.364647 ms
+[INFO][Thu Aug 22 13:53:40 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:53:40 2024] Inference time: 58.029361 ms
+[DEBUG][Thu Aug 22 13:53:40 2024] Postprocess time: 37.846450 ms
+[INFO][Thu Aug 22 13:53:40 2024] Saving image as 2024-08-22_13-53-38/13-53-40_38.5044_116.594.jpg
+[INFO][Thu Aug 22 13:53:40 2024] Predict position(UTM): (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:53:40 2024] Real position: (38.504387, 116.594490)
+[INFO][Thu Aug 22 13:53:40 2024] Real position(UTM): (464642.472623, 4290180.084614)
+[DEBUG][Thu Aug 22 13:53:40 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:40 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:40 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:40 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:40 2024] Preprocess time: 13.960530 ms
+[INFO][Thu Aug 22 13:53:40 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:53:40 2024] Inference time: 65.013417 ms
+[DEBUG][Thu Aug 22 13:53:40 2024] Postprocess time: 43.713575 ms
+[INFO][Thu Aug 22 13:53:40 2024] Saving image as 2024-08-22_13-53-38/13-53-40_38.381_116.486.jpg
+[INFO][Thu Aug 22 13:53:40 2024] Predict position(UTM): (437573.812500, 4220232.000000)
+[INFO][Thu Aug 22 13:53:40 2024] Real position: (38.380997, 116.485657)
+[INFO][Thu Aug 22 13:53:40 2024] Real position(UTM): (455076.526610, 4276425.109527)
+[DEBUG][Thu Aug 22 13:53:40 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:40 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:40 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:40 2024] Preprocess time: 13.970447 ms
+[INFO][Thu Aug 22 13:53:40 2024] RKNN inference run successfully.
+[DEBUG][Thu Aug 22 13:53:40 2024] Inference time: 60.043346 ms
+[DEBUG][Thu Aug 22 13:53:40 2024] Postprocess time: 39.479682 ms
+[INFO][Thu Aug 22 13:53:40 2024] Saving image as 2024-08-22_13-53-38/13-53-40_38.9222_116.23.jpg
+[INFO][Thu Aug 22 13:53:40 2024] Predict position(UTM): (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:53:40 2024] Real position: (38.922161, 116.230377)
+[INFO][Thu Aug 22 13:53:40 2024] Real position(UTM): (433283.627873, 4336918.254426)
+[DEBUG][Thu Aug 22 13:53:40 2024] Frame cloned to OpenCV Mat and ready for processing.
+[DEBUG][Thu Aug 22 13:53:40 2024] UDP data received and stored.
+[DEBUG][Thu Aug 22 13:53:40 2024] Frame captured from camera.
+[DEBUG][Thu Aug 22 13:53:40 2024] Preprocess time: 14.282243 ms
+[INFO][Thu Aug 22 13:55:39 2024] Log file initialized.
+[INFO][Thu Aug 22 13:55:39 2024] Program started.
+[INFO][Thu Aug 22 13:55:39 2024] Model path: ./install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn, Database path: ./install/UAV-VisionLoc-C_Linux/model/database_features.h5
+[INFO][Thu Aug 22 13:55:40 2024] Starting camera capture thread...
+[INFO][Thu Aug 22 13:55:40 2024] Starting UDP receive thread...
+[INFO][Thu Aug 22 13:55:40 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:40 2024] Saving image as 2024-08-22_13-55-40/13-55-40_38.6265_116.908.jpg
+[INFO][Thu Aug 22 13:55:40 2024] Predict position(UTM): (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:55:40 2024] Real position: (38.626488, 116.908073)
+[INFO][Thu Aug 22 13:55:40 2024] Real position(UTM): (491998.235127, 4303780.003391)
+[INFO][Thu Aug 22 13:55:40 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:40 2024] Saving image as 2024-08-22_13-55-40/13-55-40_38.0277_116.368.jpg
+[INFO][Thu Aug 22 13:55:40 2024] Predict position(UTM): (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:55:40 2024] Real position: (38.027740, 116.368042)
+[INFO][Thu Aug 22 13:55:40 2024] Real position(UTM): (444536.408608, 4237015.534947)
+[INFO][Thu Aug 22 13:55:40 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:40 2024] Saving image as 2024-08-22_13-55-40/13-55-40_38.7205_116.357.jpg
+[INFO][Thu Aug 22 13:55:40 2024] Predict position(UTM): (439615.906250, 4220690.500000)
+[INFO][Thu Aug 22 13:55:40 2024] Real position: (38.720512, 116.356850)
+[INFO][Thu Aug 22 13:55:40 2024] Real position(UTM): (444089.797285, 4314366.080115)
+[INFO][Thu Aug 22 13:55:40 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:40 2024] Saving image as 2024-08-22_13-55-40/13-55-40_38.4375_116.171.jpg
+[INFO][Thu Aug 22 13:55:40 2024] Predict position(UTM): (437861.593750, 4220415.500000)
+[INFO][Thu Aug 22 13:55:40 2024] Real position: (38.437519, 116.171410)
+[INFO][Thu Aug 22 13:55:40 2024] Real position(UTM): (427685.729806, 4282830.300244)
+[INFO][Thu Aug 22 13:55:41 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:41 2024] Saving image as 2024-08-22_13-55-40/13-55-41_38.363_116.3.jpg
+[INFO][Thu Aug 22 13:55:41 2024] Predict position(UTM): (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:55:41 2024] Real position: (38.363045, 116.300308)
+[INFO][Thu Aug 22 13:55:41 2024] Real position(UTM): (438872.660592, 4274471.502339)
+[INFO][Thu Aug 22 13:55:41 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:41 2024] Saving image as 2024-08-22_13-55-40/13-55-41_38.1063_116.171.jpg
+[INFO][Thu Aug 22 13:55:41 2024] Predict position(UTM): (438231.218750, 4220775.500000)
+[INFO][Thu Aug 22 13:55:41 2024] Real position: (38.106312, 116.171356)
+[INFO][Thu Aug 22 13:55:41 2024] Real position(UTM): (427351.831891, 4245854.910501)
+[INFO][Thu Aug 22 13:55:41 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:41 2024] Saving image as 2024-08-22_13-55-40/13-55-41_38.1019_116.674.jpg
+[INFO][Thu Aug 22 13:55:41 2024] Predict position(UTM): (438165.437500, 4220613.500000)
+[INFO][Thu Aug 22 13:55:41 2024] Real position: (38.101883, 116.674316)
+[INFO][Thu Aug 22 13:55:41 2024] Real position(UTM): (471445.418575, 4245224.405257)
+[INFO][Thu Aug 22 13:55:41 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:41 2024] Saving image as 2024-08-22_13-55-40/13-55-41_38.8412_116.105.jpg
+[INFO][Thu Aug 22 13:55:41 2024] Predict position(UTM): (438231.218750, 4220775.500000)
+[INFO][Thu Aug 22 13:55:41 2024] Real position: (38.841194, 116.104805)
+[INFO][Thu Aug 22 13:55:41 2024] Real position(UTM): (422309.833924, 4327922.146333)
+[INFO][Thu Aug 22 13:55:41 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:41 2024] Saving image as 2024-08-22_13-55-40/13-55-41_38.2337_116.071.jpg
+[INFO][Thu Aug 22 13:55:41 2024] Predict position(UTM): (437734.468750, 4220265.500000)
+[INFO][Thu Aug 22 13:55:41 2024] Real position: (38.233742, 116.070862)
+[INFO][Thu Aug 22 13:55:41 2024] Real position(UTM): (418682.911000, 4260121.420020)
+[INFO][Thu Aug 22 13:55:41 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:41 2024] Saving image as 2024-08-22_13-55-40/13-55-41_38.5381_116.886.jpg
+[INFO][Thu Aug 22 13:55:41 2024] Predict position(UTM): (437574.000000, 4220257.000000)
+[INFO][Thu Aug 22 13:55:41 2024] Real position: (38.538078, 116.886452)
+[INFO][Thu Aug 22 13:55:41 2024] Real position(UTM): (490104.044964, 4293908.713486)
+[INFO][Thu Aug 22 13:55:41 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:41 2024] Saving image as 2024-08-22_13-55-40/13-55-41_38.354_116.703.jpg
+[INFO][Thu Aug 22 13:55:41 2024] Predict position(UTM): (438736.937500, 4220775.000000)
+[INFO][Thu Aug 22 13:55:41 2024] Real position: (38.354050, 116.703125)
+[INFO][Thu Aug 22 13:55:41 2024] Real position(UTM): (474060.951808, 4273376.500384)
+[INFO][Thu Aug 22 13:55:41 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:42 2024] Saving image as 2024-08-22_13-55-40/13-55-42_38.1044_116.728.jpg
+[INFO][Thu Aug 22 13:55:42 2024] Predict position(UTM): (437574.187500, 4220282.000000)
+[INFO][Thu Aug 22 13:55:42 2024] Real position: (38.104435, 116.728226)
+[INFO][Thu Aug 22 13:55:42 2024] Real position(UTM): (476172.799899, 4245501.806180)
+[INFO][Thu Aug 22 13:55:42 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:42 2024] Saving image as 2024-08-22_13-55-40/13-55-42_38.4479_116.464.jpg
+[INFO][Thu Aug 22 13:55:42 2024] Predict position(UTM): (439590.718750, 4220690.500000)
+[INFO][Thu Aug 22 13:55:42 2024] Real position: (38.447903, 116.463524)
+[INFO][Thu Aug 22 13:55:42 2024] Real position(UTM): (453186.589664, 4283900.637831)
+[INFO][Thu Aug 22 13:55:42 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:42 2024] Saving image as 2024-08-22_13-55-40/13-55-42_38.4144_116.651.jpg
+[INFO][Thu Aug 22 13:55:42 2024] Predict position(UTM): (437734.468750, 4220265.500000)
+[INFO][Thu Aug 22 13:55:42 2024] Real position: (38.414375, 116.650887)
+[INFO][Thu Aug 22 13:55:42 2024] Real position(UTM): (469522.000757, 4280120.005060)
+[INFO][Thu Aug 22 13:55:42 2024] RKNN inference run successfully.
+[INFO][Thu Aug 22 13:55:42 2024] Saving image as 2024-08-22_13-55-40/13-55-42_38.0273_116.665.jpg

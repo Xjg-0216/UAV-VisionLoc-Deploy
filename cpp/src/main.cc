@@ -57,14 +57,14 @@ void capture_camera(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
     }
     log_message(DEBUG, "Video stream started successfully.");
 
-    while (true)
+    while (!stop_threads.load())
     {
         uvc_frame_t *frame;
         res = uvc_stream_get_frame(stream_handle, &frame, 10000); // 10秒超时
         if (res != UVC_SUCCESS)
         {
-            log_message(WARN, "Failed to get frame from video stream.");
-            uvc_perror(res, "uvc_stream_get_frame");
+            log_message(DEBUG, "Failed to get frame from video stream.");
+            // uvc_perror(res, "uvc_stream_get_frame");
 
             continue;
         }
@@ -117,7 +117,7 @@ void receive_udp_data(int sock)
 {
     log_message(INFO, "Starting UDP receive thread...");
     char buffer[1024]; // Adjust size as needed
-    while (true)
+    while (!stop_threads.load())
     {
         AAIR data;
         ssize_t recv_len = recvfrom(sock, &data, sizeof(data), 0, NULL, NULL);
@@ -125,6 +125,7 @@ void receive_udp_data(int sock)
         {
             log_message(WARN, "Failed to receive data from UDP socket.");
             perror("recvfrom");
+            udp_data_ready = false;
             continue;
         }
 
@@ -148,8 +149,21 @@ void receive_udp_data(int sock)
 int main(int argc, char **argv)
 {
     // 初始化日志
+
+    // std::string currentTime = getCurrentTimeString();
+    // // 使用当前时间字符串生成日志文件名
+    // std::string logFileName = currentTime + ".log";
+
+    // // 初始化日志文件
+    // initLogFile(logFileName);
+
+    // 初始化日志
     initLogFile("log.txt");
     setLogLevel(INFO); // 设置日志级别
+    // setLogLevel(DEBUG); // 设置日志级别
+
+
+
 
     log_message(INFO, "Program started.");
 
@@ -297,6 +311,17 @@ int main(int argc, char **argv)
 
     // 启动UDP接收线程
     std::thread udp_thread(receive_udp_data, udp_sock);
+
+    // 创建日期文件夹
+    std::string date_folder = getCurrentTimeString();
+    struct stat st;
+    if (stat(date_folder.c_str(), &st) != 0)
+    {
+        std::string mkdir_command = "mkdir -p " + date_folder;
+        int res1 = system(mkdir_command.c_str()); // 创建文件夹
+    }
+
+
     // 主线程用于处理图像和UDP数据
     while (!stop_threads.load())
     {
@@ -356,36 +381,40 @@ int main(int argc, char **argv)
         std::chrono::duration<double, std::milli> elapsed3 = end3 - end2;
         log_message(DEBUG, "Postprocess time: " + std::to_string(elapsed3.count()) + " ms");
 
-        // 获取当前时间
-        auto now = std::chrono::system_clock::now();
-        std::time_t now_time = std::chrono::system_clock::to_time_t(now);
-        std::tm *tm_info = std::localtime(&now_time);
+        // // 获取当前时间
+        // auto now = std::chrono::system_clock::now();
+        // std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+        // std::tm *tm_info = std::localtime(&now_time);
 
-        // 格式化日期和时间为字符串
-        char date_buffer[80], time_buffer[80];
-        std::strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", tm_info); // 获取日期
+        // // 格式化日期和时间为字符串
+        // char date_buffer[80], time_buffer[80];
+        // std::strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", tm_info); // 获取日期
 
-        // 创建日期文件夹
-        std::string date_folder = date_buffer;
-        struct stat st;
-        if (stat(date_folder.c_str(), &st) != 0)
-        {
-            std::string mkdir_command = "mkdir -p " + date_folder;
-            (void)system(mkdir_command.c_str()); // 创建文件夹
-        }
+        // // 创建日期文件夹
+        // std::string date_folder = date_buffer;
+        // struct stat st;
+        // if (stat(date_folder.c_str(), &st) != 0)
+        // {
+        //     std::string mkdir_command = "mkdir -p " + date_folder;
+        //     (void)system(mkdir_command.c_str()); // 创建文件夹
+        // }
 
         // 创建文件名
         std::stringstream filename;
-        filename << date_folder << "/" << static_cast<int>(udp_data.id) << "_" << udp_data.lat << "_" << udp_data.lng << ".jpg";
+        std::string currentTime = getCurrentTimeForFilename();
+        filename << date_folder << "/" << currentTime << "_" << udp_data.lat << "_" << udp_data.lng << ".jpg";
         log_message(INFO, "Saving image as " + filename.str());
 
         // 保存图像
         cv::imwrite(filename.str(), img);
 
-        log_message(INFO, "Predict position: (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
+        log_message(INFO, "Predict position(UTM): (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
         log_message(INFO, "Real position: (" + std::to_string(udp_data.lat) + ", " + std::to_string(udp_data.lng) + ")");
 
-        // 添加预测的经纬度
+        // 添加真实的UTM
+        double easting, northing;
+        latLonToUTM(udp_data.lat, udp_data.lng, easting, northing);
+        log_message(INFO, "Real position(UTM): (" + std::to_string(easting) + ", " + std::to_string(northing) + ")");
         
 
         // 释放输出

@@ -9,6 +9,8 @@
 #include <ctime>
 #include <cmath>
 #include <tuple>
+#include <iomanip>
+#include <sstream>
 
 
 #ifndef UTILS_H_
@@ -34,8 +36,9 @@ void setLogLevel(LogLevel level);
 void initLogFile(const std::string &filename);
 void log_message(LogLevel level, const std::string &message);
 void closeLogFile();
-std::tuple<double, double> utm_to_latlon(double easting, double northing, int zone, bool is_northern_hemisphere,
-                                         double a, double e);
+void latLonToUTM(double latitude, double longitude, double& easting, double& northing);
+std::string getCurrentTimeString();
+std::string getCurrentTimeForFilename();
 #ifdef __cplusplus
 }
 #endif
