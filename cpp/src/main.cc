@@ -29,8 +29,6 @@ std::atomic<bool> image_ready(false);
 std::atomic<bool> udp_data_ready(false);
 std::atomic<bool> stop_threads(false); // 用于停止线程的标志
 
-
-
 void capture_camera(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
 {
     log_message(INFO, "Starting camera capture thread...");
@@ -57,14 +55,14 @@ void capture_camera(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
     }
     log_message(DEBUG, "Video stream started successfully.");
 
-    while (true)
+    while (!stop_threads.load())
     {
         uvc_frame_t *frame;
         res = uvc_stream_get_frame(stream_handle, &frame, 10000); // 10秒超时
         if (res != UVC_SUCCESS)
         {
-            log_message(WARN, "Failed to get frame from video stream.");
-            uvc_perror(res, "uvc_stream_get_frame");
+            log_message(DEBUG, "Failed to get frame from video stream.");
+            // uvc_perror(res, "uvc_stream_get_frame");
 
             continue;
         }
@@ -117,7 +115,7 @@ void receive_udp_data(int sock)
 {
     log_message(INFO, "Starting UDP receive thread...");
     char buffer[1024]; // Adjust size as needed
-    while (true)
+    while (!stop_threads.load())
     {
         AAIR data;
         ssize_t recv_len = recvfrom(sock, &data, sizeof(data), 0, NULL, NULL);
@@ -125,6 +123,7 @@ void receive_udp_data(int sock)
         {
             log_message(WARN, "Failed to receive data from UDP socket.");
             perror("recvfrom");
+            udp_data_ready = false;
             continue;
         }
 
@@ -133,6 +132,7 @@ void receive_udp_data(int sock)
         {
             log_message(WARN, "Received data size mismatch!");
             std::cerr << "Received data size mismatch" << std::endl;
+            udp_data_ready = false;
             continue;
         }
 
@@ -148,10 +148,25 @@ void receive_udp_data(int sock)
 int main(int argc, char **argv)
 {
     // 初始化日志
-    initLogFile("log.txt");
-    setLogLevel(INFO); // 设置日志级别
+
+    std::string currentTime = getCurrentTimeString();
+    // 使用当前时间字符串生成日志文件名
+    std::string logFileName = currentTime + ".log";
+
+    // 初始化日志文件
+    initLogFile(logFileName);
+    setLogLevel(DEBUG); // 设置日志级别
 
     log_message(INFO, "Program started.");
+
+    // 创建日期文件夹
+    std::string date_folder = getCurrentTimeString();
+    struct stat st;
+    if (stat(date_folder.c_str(), &st) != 0)
+    {
+        std::string mkdir_command = "mkdir -p " + date_folder;
+        int res = system(mkdir_command.c_str()); // 创建文件夹
+    }
 
     if (argc != 3)
     {
@@ -256,6 +271,7 @@ int main(int argc, char **argv)
 
     // 启动摄像头捕获线程
     std::thread camera_thread(capture_camera, devh, ctrl);
+
     // 配置UDP
     int udp_sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (udp_sock < 0)
@@ -303,93 +319,85 @@ int main(int argc, char **argv)
         // 等待新数据可用
         std::unique_lock<std::mutex> lock(mtx);
         data_condition.wait(lock, []
-                            { return image_ready && udp_data_ready; });
+                            { return image_ready || udp_data_ready; }); // 修改唤醒主线程条件
 
-        if (latest_image.empty())
+        // if (!image_ready)
+        // {
+        //     log_message(DEBUG, "No new image available.");
+        // }
+
+        // if (!udp_data_ready)
+        // {
+        //     log_message(DEBUG, "No new UDP data available.");
+        // }
+        if (image_ready && udp_data_ready)
         {
-            log_message(WARN, "No image available, continuing...");
-            continue;
+            // 获取数据并重置标志
+            cv::Mat img = latest_image.clone();
+            AAIR udp_data = latest_udp_data;
+            image_ready.store(false);
+            udp_data_ready.store(false);
+            auto start1 = std::chrono::high_resolution_clock::now();
+            cv::Mat image = VideoPrerocess(img, 3, udp_data.roll, udp_data.pitch, udp_data.yaw); // 预处理图像
+            auto end1 = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double, std::milli> elapsed1 = end1 - start1;
+            log_message(DEBUG, "Preprocess time: " + std::to_string(elapsed1.count()) + " ms");
+
+            // 设置RKNN输入
+            rknn_input input[1];
+            memset(input, 0, sizeof(rknn_input));
+            input[0].index = 0;
+            input[0].buf = image.data;
+            input[0].size = image.rows * image.cols * image.channels() * sizeof(RKNN_TENSOR_FLOAT32);
+            input[0].pass_through = 0;
+            input[0].type = RKNN_TENSOR_FLOAT32;
+            input[0].fmt = RKNN_TENSOR_NHWC;
+            rknn_inputs_set(context, 1, input);
+
+            // 进行推理
+            rknn_run(context, NULL);
+            log_message(INFO, "RKNN inference run successfully.");
+
+            // 获取推理结果
+            rknn_output output[1];
+            memset(output, 0, sizeof(rknn_output));
+            output[0].index = 0;
+            output[0].is_prealloc = 0;
+            output[0].want_float = 1;
+            rknn_outputs_get(context, 1, output, NULL);
+
+            float32_t *result = (float32_t *)output[0].buf;
+            auto end2 = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double, std::milli> elapsed2 = end2 - end1;
+            log_message(DEBUG, "Inference time: " + std::to_string(elapsed2.count()) + " ms");
+
+            // 后处理
+            int use_best_n = 1; // 使用最相似的前N个结果
+            std::pair<float32_t, float32_t> best_position = post_process(index, result, database, use_best_n);
+            auto end3 = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double, std::milli> elapsed3 = end3 - end2;
+            log_message(DEBUG, "Postprocess time: " + std::to_string(elapsed3.count()) + " ms");
+
+            // 创建文件名
+            std::stringstream filename;
+            std::string currentTime = getCurrentTimeForFilename();
+            filename << date_folder << "/" << currentTime << "_" << udp_data.lat << "_" << udp_data.lng << ".jpg";
+            log_message(INFO, "Saving image as " + filename.str());
+
+            // 保存图像
+            cv::imwrite(filename.str(), img);
+
+            log_message(INFO, "Predict position(UTM): (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
+            log_message(INFO, "Real position: (" + std::to_string(udp_data.lat) + ", " + std::to_string(udp_data.lng) + ")");
+
+            // 添加真实的UTM
+            double easting, northing;
+            latLonToUTM(udp_data.lat, udp_data.lng, easting, northing);
+            log_message(INFO, "Real position(UTM): (" + std::to_string(easting) + ", " + std::to_string(northing) + ")");
+
+            // 释放输出
+            rknn_outputs_release(context, 1, output);
         }
-        // 获取数据并重置标志
-        cv::Mat img = latest_image.clone();
-        AAIR udp_data = latest_udp_data;
-        image_ready.store(false);
-        udp_data_ready.store(false);
-        auto start1 = std::chrono::high_resolution_clock::now();
-        cv::Mat image = VideoPrerocess(img, 3, udp_data.roll, udp_data.pitch, udp_data.yaw); // 预处理图像
-        auto end1 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double, std::milli> elapsed1 = end1 - start1;
-        log_message(DEBUG, "Preprocess time: " + std::to_string(elapsed1.count()) + " ms");
-
-        // 设置RKNN输入
-        rknn_input input[1];
-        memset(input, 0, sizeof(rknn_input));
-        input[0].index = 0;
-        input[0].buf = image.data;
-        input[0].size = image.rows * image.cols * image.channels() * sizeof(RKNN_TENSOR_FLOAT32);
-        input[0].pass_through = 0;
-        input[0].type = RKNN_TENSOR_FLOAT32;
-        input[0].fmt = RKNN_TENSOR_NHWC;
-        rknn_inputs_set(context, 1, input);
-
-        // 进行推理
-        rknn_run(context, NULL);
-        log_message(INFO, "RKNN inference run successfully.");
-
-        // 获取推理结果
-        rknn_output output[1];
-        memset(output, 0, sizeof(rknn_output));
-        output[0].index = 0;
-        output[0].is_prealloc = 0;
-        output[0].want_float = 1;
-        rknn_outputs_get(context, 1, output, NULL);
-
-        float32_t *result = (float32_t *)output[0].buf;
-        auto end2 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double, std::milli> elapsed2 = end2 - end1;
-        log_message(DEBUG, "Inference time: " + std::to_string(elapsed2.count()) + " ms");
-
-        // 后处理
-        int use_best_n = 1; // 使用最相似的前N个结果
-        std::pair<float32_t, float32_t> best_position = post_process(index, result, database, use_best_n);
-        auto end3 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double, std::milli> elapsed3 = end3 - end2;
-        log_message(DEBUG, "Postprocess time: " + std::to_string(elapsed3.count()) + " ms");
-
-        // 获取当前时间
-        auto now = std::chrono::system_clock::now();
-        std::time_t now_time = std::chrono::system_clock::to_time_t(now);
-        std::tm *tm_info = std::localtime(&now_time);
-
-        // 格式化日期和时间为字符串
-        char date_buffer[80], time_buffer[80];
-        std::strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", tm_info); // 获取日期
-
-        // 创建日期文件夹
-        std::string date_folder = date_buffer;
-        struct stat st;
-        if (stat(date_folder.c_str(), &st) != 0)
-        {
-            std::string mkdir_command = "mkdir -p " + date_folder;
-            (void)system(mkdir_command.c_str()); // 创建文件夹
-        }
-
-        // 创建文件名
-        std::stringstream filename;
-        filename << date_folder << "/" << static_cast<int>(udp_data.id) << "_" << udp_data.lat << "_" << udp_data.lng << ".jpg";
-        log_message(INFO, "Saving image as " + filename.str());
-
-        // 保存图像
-        cv::imwrite(filename.str(), img);
-
-        log_message(INFO, "Predict position: (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
-        log_message(INFO, "Real position: (" + std::to_string(udp_data.lat) + ", " + std::to_string(udp_data.lng) + ")");
-
-        // 添加预测的经纬度
-        
-
-        // 释放输出
-        rknn_outputs_release(context, 1, output);
     }
 
     // 停止摄像头和UDP接收线程
