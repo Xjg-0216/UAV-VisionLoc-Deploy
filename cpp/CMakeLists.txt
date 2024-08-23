@@ -16,12 +16,16 @@ set(RKNN_RT_LIB ${RKNN_API_PATH}/${LIB_ARCH}/librknnrt.so)  # 该变量定义了
 include_directories(${RKNN_API_PATH}/include)  # 添加RKNN API的头文件
 
 # 查找HDF5库
-find_package(HDF5 REQUIRED COMPONENTS C HL)
-include_directories(${HDF5_INCLUDE_DIRS})
+# find_package(HDF5 REQUIRED COMPONENTS C HL)
+# include_directories(${HDF5_INCLUDE_DIRS})
 
-# set(HDF5_DIR ${CMAKE_SOURCE_DIR}/3rdparty/hdf5)
-# set(HDF5_LIBRARIES ${HDF5_DIR}/lib/libhdf5_serial.so)
-# include_directories(${HDF5_DIR}/include)
+set(HDF5_DIR ${CMAKE_SOURCE_DIR}/3rdparty/hdf5)
+set(HDF5_LIBRARIES ${HDF5_DIR}/lib/libhdf5_serial.so.103)
+include_directories(${HDF5_DIR}/include)
+
+# 查找yaml-cpp库
+find_package(yaml-cpp REQUIRED)
+include_directories(${yaml-cpp_INCLUDE_DIRS})
 
 # opencv
 set(OpenCV_DIR ${CMAKE_SOURCE_DIR}/3rdparty/opencv/share/OpenCV)  # 指定了OpenCV库的路径。
@@ -29,8 +33,8 @@ find_package(OpenCV REQUIRED)  # 自动查找OpenCV库，并将相关信息保�
 
 
 # faiss
-set(FAISS_API_PATH /home/xujg/miniconda3/envs/vtl2)
-# set(FAISS_API_PATH ${CMAKE_SOURCE_DIR}/3rdparty/faiss)
+# set(FAISS_API_PATH /home/xujg/miniconda3/envs/vtl2)
+set(FAISS_API_PATH ${CMAKE_SOURCE_DIR}/3rdparty/faiss)
 set(FAISS_INCLUDE_DIR ${FAISS_API_PATH}/include)
 set(FAISS_LIBRARY_DIR ${FAISS_API_PATH}/lib)
 set(FAISS_LIB ${FAISS_LIBRARY_DIR}/libfaiss.so)
@@ -42,7 +46,8 @@ set(LIBUVC_LIB ${CMAKE_SOURCE_DIR}/3rdparty/libuvc/lib/libuvc.so)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/libuvc)
 
 # 指定了程序运行时查找动态链接库的路径
-set(CMAKE_INSTALL_RPATH "lib;${FAISS_LIBRARY_DIR}")
+set(CMAKE_INSTALL_RPATH "${HDF5_DIR}/lib;${CMAKE_SOURCE_DIR}/3rdparty/libuvc/lib;${FAISS_LIBRARY_DIR};lib")
+# set(CMAKE_INSTALL_RPATH "${CMAKE_SOURCE_DIR}/require")
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
@@ -58,6 +63,7 @@ target_link_libraries(${PROJECT_NAME}
   ${HDF5_LIBRARIES}
   ${FAISS_LIB}
   ${LIBUVC_LIB}
+  yaml-cpp
 )
 
 # 指定了程序安装的路径

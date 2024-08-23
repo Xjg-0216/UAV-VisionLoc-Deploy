@@ -20,6 +20,7 @@
 #include <cstdio>
 #include <sys/stat.h>
 
+
 // 全局变量用于存储最新的摄像头图像和UDP数据
 std::mutex mtx;
 std::condition_variable data_condition;
@@ -28,8 +29,6 @@ AAIR latest_udp_data;
 std::atomic<bool> image_ready(false);
 std::atomic<bool> udp_data_ready(false);
 std::atomic<bool> stop_threads(false); // 用于停止线程的标志
-
-
 
 void capture_camera(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
 {
@@ -146,37 +145,34 @@ void receive_udp_data(int sock)
     }
 }
 
+
+
 int main(int argc, char **argv)
 {
+    //解析日志文件
+    std::string filename = argv[1];
+    Config config = parseConfig(filename);
+
+    std::string experimentDir = "./";
+    // createNewExperimentDir(experimentDir);
     // 初始化日志
-
-    // std::string currentTime = getCurrentTimeString();
-    // // 使用当前时间字符串生成日志文件名
-    // std::string logFileName = currentTime + ".log";
-
-    // // 初始化日志文件
-    // initLogFile(logFileName);
-
-    // 初始化日志
-    initLogFile("log.txt");
-    setLogLevel(INFO); // 设置日志级别
-    // setLogLevel(DEBUG); // 设置日志级别
-
-
-
+    initLogFile(experimentDir);
+    setLogLevel(config.log_level); // 设置日志级别
 
     log_message(INFO, "Program started.");
 
-    if (argc != 3)
-    {
-        log_message(ERROR, "Usage error: Not enough arguments provided.");
-        std::cerr << "Usage: " << argv[0] << " <model_path> <database_path>" << std::endl;
-        return -1;
-    }
+    
 
-    char *model_path = argv[1];
-    char *database_path = argv[2];
-    log_message(INFO, "Model path: " + std::string(model_path) + ", Database path: " + std::string(database_path));
+    // if (argc != 3)
+    // {
+    //     log_message(ERROR, "Usage error: Not enough arguments provided.");
+    //     std::cerr << "Usage: " << argv[0] << " <model_path> <database_path>" << std::endl;
+    //     return -1;
+    // }
+    const char* model_path = config.model_path.c_str(); 
+    const char* database_path = config.database_path.c_str();
+    const char* udp_net = config.udp_net.c_str();
+    log_message(INFO, "Model path: " + config.model_path + ", Database path: " + config.database_path);
 
     rknn_context context;
     char *model;
@@ -289,8 +285,8 @@ int main(int argc, char **argv)
 
     sockaddr_in udp_addr;
     udp_addr.sin_family = AF_INET;
-    udp_addr.sin_addr.s_addr = inet_addr("192.168.1.19");
-    udp_addr.sin_port = htons(12345); // Set the UDP port number
+    udp_addr.sin_addr.s_addr = inet_addr(udp_net);
+    udp_addr.sin_port = htons(config.udp_port); // Set the UDP port number
 
     if (bind(udp_sock, (struct sockaddr *)&udp_addr, sizeof(udp_addr)) < 0)
     {
@@ -320,7 +316,6 @@ int main(int argc, char **argv)
         std::string mkdir_command = "mkdir -p " + date_folder;
         int res1 = system(mkdir_command.c_str()); // 创建文件夹
     }
-
 
     // 主线程用于处理图像和UDP数据
     while (!stop_threads.load())
@@ -402,7 +397,7 @@ int main(int argc, char **argv)
         // 创建文件名
         std::stringstream filename;
         std::string currentTime = getCurrentTimeForFilename();
-        filename << date_folder << "/" << currentTime << "_" << udp_data.lat << "_" << udp_data.lng << ".jpg";
+        filename << experimentDir << "/" << date_folder << "/" << currentTime << "_" << std::defaultfloat << udp_data.lat << "_" << udp_data.lng << ".jpg";
         log_message(INFO, "Saving image as " + filename.str());
 
         // 保存图像
@@ -415,7 +410,6 @@ int main(int argc, char **argv)
         double easting, northing;
         latLonToUTM(udp_data.lat, udp_data.lng, easting, northing);
         log_message(INFO, "Real position(UTM): (" + std::to_string(easting) + ", " + std::to_string(northing) + ")");
-        
 
         // 释放输出
         rknn_outputs_release(context, 1, output);
