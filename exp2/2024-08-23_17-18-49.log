@@ -1,0 +1,6 @@
+[INFO][Fri Aug 23 17:18:49 2024] Log file initialized.
+[INFO][Fri Aug 23 17:18:49 2024] Program started.
+[INFO][Fri Aug 23 17:18:49 2024] Model path: /home/xujg/code/UAV-VisionLoc-Deploy/cpp/install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn, Database path: /home/xujg/code/UAV-VisionLoc-Deploy/cpp/install/UAV-VisionLoc-C_Linux/model/database_features.h5
+[ERROR][Fri Aug 23 17:18:49 2024] Failed to bind UDP socket.
+[ERROR][Fri Aug 23 17:18:49 2024] Failed to bind UDP socket.
+[INFO][Fri Aug 23 17:18:49 2024] Starting camera capture thread...

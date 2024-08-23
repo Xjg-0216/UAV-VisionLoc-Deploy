@@ -153,8 +153,42 @@ int main(int argc, char **argv)
     std::string filename = argv[1];
     Config config = parseConfig(filename);
 
-    std::string experimentDir = "./";
+    std::string experimentDir;
     // createNewExperimentDir(experimentDir);
+    int i = 1;
+    std::string baseDir;
+    std::string newDir;
+    
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != nullptr) {
+        // 当前工作目录
+        std::string currentDir = cwd;
+
+        // 获取上一级目录
+        size_t lastSlashPos = currentDir.find_last_of('/');
+        if (lastSlashPos != std::string::npos) {
+            baseDir = currentDir.substr(0, lastSlashPos); // 上一级目录
+        } else {
+            std::cerr << "Failed to determine parent directory." << std::endl;
+        }
+
+        while (true) {
+            newDir = baseDir + "/exp" + std::to_string(i);
+            if (mkdir(newDir.c_str(), 0755) == 0) { // 目录创建成功
+                experimentDir = newDir;
+                break;
+            }
+            if (errno != EEXIST) { // 目录创建失败且非已存在错误
+                std::cerr << "Failed to create experiment directory: " << strerror(errno) << std::endl;
+                break;
+            }
+            ++i;
+        }
+    } else {
+        std::cerr << "Failed to get current directory: " << strerror(errno) << std::endl;
+    }
+
+
     // 初始化日志
     initLogFile(experimentDir);
     setLogLevel(config.log_level); // 设置日志级别
@@ -404,6 +438,9 @@ int main(int argc, char **argv)
         cv::imwrite(filename.str(), img);
 
         log_message(INFO, "Predict position(UTM): (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
+        double lat, lon;
+        utm_to_latlon(best_position.first, best_position.second, 50, true, lat, lon);
+        log_message(INFO, "Predict position: (" + std::to_string(lat) + ", " + std::to_string(lon) + ")");
         log_message(INFO, "Real position: (" + std::to_string(udp_data.lat) + ", " + std::to_string(udp_data.lng) + ")");
 
         // 添加真实的UTM

@@ -29,6 +29,7 @@ struct Config {
     std::string database_path;
     std::string udp_net;
     int udp_port;
+    int fps;
 };
 
 int read_data_from_file(const char *path, char **out_data);
@@ -47,6 +48,7 @@ void setLogLevel(const std::string& levelStr);
 void initLogFile(std::string& experimentDir);
 void log_message(LogLevel level, const std::string &message);
 void closeLogFile();
+void utm_to_latlon(double easting, double northing, int zone, bool is_northern_hemisphere, double& lat, double& lon);
 void latLonToUTM(double latitude, double longitude, double& easting, double& northing);
 std::string getCurrentTimeString();
 std::string getCurrentTimeForFilename();
