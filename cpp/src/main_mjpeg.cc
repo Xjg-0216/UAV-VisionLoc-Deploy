@@ -63,8 +63,6 @@ void capture_camera(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
         if (res != UVC_SUCCESS)
         {
             log_message(DEBUG, "Failed to get frame from video stream.");
-            // uvc_perror(res, "uvc_stream_get_frame");
-
             continue;
         }
         log_message(DEBUG, "Frame captured from camera.");
@@ -72,28 +70,19 @@ void capture_camera(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
         // 确保在多线程环境中使用互斥锁保护共享资源
         std::lock_guard<std::mutex> lock(mtx);
 
-        // 将帧转换为BGR格式
-        uvc_frame_t *bgr = uvc_allocate_frame(frame->width * frame->height * 3);
-        if (!bgr)
+        cv::Mat decoded_image = cv::imdecode(cv::Mat(1, frame->data_bytes, CV_8UC1, frame->data), cv::IMREAD_COLOR);
+        if (decoded_image.empty())
         {
-            std::cerr << "Unable to allocate bgr frame!" << std::endl;
+            log_message(WARN, "Failed to decode MJPEG frame.");
             continue;
         }
 
-        res = uvc_any2bgr(frame, bgr);
-        if (res != UVC_SUCCESS)
-        {
-            log_message(WARN, "Failed to convert frame to BGR format.");
-            uvc_perror(res, "uvc_any2bgr");
-            uvc_free_frame(bgr);
-            continue;
-        }
+        // 将解码后的图像赋值给全局变量 latest_image
+        latest_image = decoded_image.clone();
 
-        // 使用OpenCV显示图像
-        latest_image = cv::Mat(cv::Size(bgr->width, bgr->height), CV_8UC3, bgr->data).clone();
+        log_message(DEBUG, "Frame decoded and stored.");
+
         image_ready = true;
-        uvc_free_frame(bgr);
-        log_message(DEBUG, "Frame cloned to OpenCV Mat and ready for processing.");
 
         // 通知数据已准备好
         data_condition.notify_all();
@@ -111,6 +100,7 @@ void capture_camera(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
     uvc_close(devh);
     log_message(DEBUG, "Camera device handle closed.");
 }
+
 
 void receive_udp_data(int sock)
 {
@@ -152,7 +142,6 @@ int main(int argc, char **argv)
     //解析日志文件
     std::string filename = argv[1];
     Config config = parseConfig(filename);
-
     std::string experimentDir;
     // createNewExperimentDir(experimentDir);
     int i = 1;
@@ -195,14 +184,6 @@ int main(int argc, char **argv)
 
     log_message(INFO, "Program started.");
 
-    
-
-    // if (argc != 3)
-    // {
-    //     log_message(ERROR, "Usage error: Not enough arguments provided.");
-    //     std::cerr << "Usage: " << argv[0] << " <model_path> <database_path>" << std::endl;
-    //     return -1;
-    // }
     const char* model_path = config.model_path.c_str(); 
     const char* database_path = config.database_path.c_str();
     const char* udp_net = config.udp_net.c_str();
@@ -246,6 +227,7 @@ int main(int argc, char **argv)
 
     // 设置NPU核心使用多个核心
     rknn_core_mask core_mask = RKNN_NPU_CORE_0_1_2;
+    // rknn_core_mask core_mask = RKNN_NPU_CORE_0;
     ret = rknn_set_core_mask(context, core_mask);
     if (ret < 0)
     {
@@ -269,8 +251,10 @@ int main(int argc, char **argv)
     }
     log_message(DEBUG, "UVC context initialized successfully.");
 
-    int vendor_id = 0x2bdf;
-    int product_id = 0x0102;
+    // int vendor_id = 0x2bdf;
+    // int product_id = 0x0102;
+    int vendor_id = 0x05a3;
+    int product_id = 0x9230;
     res = uvc_find_device(ctx, &dev, vendor_id, product_id, NULL);
     if (res < 0)
     {
@@ -289,7 +273,8 @@ int main(int argc, char **argv)
     }
     log_message(DEBUG, "UVC device opened successfully.");
 
-    res = uvc_get_stream_ctrl_format_size(devh, &ctrl, UVC_FRAME_FORMAT_YUYV, 640, 512, 30);
+    // res = uvc_get_stream_ctrl_format_size(devh, &ctrl, UVC_FRAME_FORMAT_YUYV, 640, 512, 30);
+    res = uvc_get_stream_ctrl_format_size(devh, &ctrl, UVC_FRAME_FORMAT_MJPEG, 640, 480, 30);
     if (res < 0)
     {
         log_message(ERROR, "Failed to get stream control format size.");
@@ -326,7 +311,6 @@ int main(int argc, char **argv)
     {
         log_message(ERROR, "Failed to bind UDP socket.");
         perror("bind");
-        perror("bind");
         close(udp_sock);
         stop_threads.store(true);
         camera_thread.join();  // 等待摄像头线程结束
@@ -343,7 +327,7 @@ int main(int argc, char **argv)
     std::thread udp_thread(receive_udp_data, udp_sock);
 
     // 创建日期文件夹
-    std::string date_folder = getCurrentTimeString();
+    std::string date_folder = experimentDir + "/" + getCurrentTimeString();
     struct stat st;
     if (stat(date_folder.c_str(), &st) != 0)
     {
@@ -369,6 +353,7 @@ int main(int argc, char **argv)
         AAIR udp_data = latest_udp_data;
         image_ready.store(false);
         udp_data_ready.store(false);
+        log_message(DEBUG, "image and udp_data ");
         auto start1 = std::chrono::high_resolution_clock::now();
         cv::Mat image = VideoPrerocess(img, 3, udp_data.roll, udp_data.pitch, udp_data.yaw); // 预处理图像
         auto end1 = std::chrono::high_resolution_clock::now();
@@ -410,33 +395,15 @@ int main(int argc, char **argv)
         std::chrono::duration<double, std::milli> elapsed3 = end3 - end2;
         log_message(DEBUG, "Postprocess time: " + std::to_string(elapsed3.count()) + " ms");
 
-        // // 获取当前时间
-        // auto now = std::chrono::system_clock::now();
-        // std::time_t now_time = std::chrono::system_clock::to_time_t(now);
-        // std::tm *tm_info = std::localtime(&now_time);
-
-        // // 格式化日期和时间为字符串
-        // char date_buffer[80], time_buffer[80];
-        // std::strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", tm_info); // 获取日期
-
-        // // 创建日期文件夹
-        // std::string date_folder = date_buffer;
-        // struct stat st;
-        // if (stat(date_folder.c_str(), &st) != 0)
-        // {
-        //     std::string mkdir_command = "mkdir -p " + date_folder;
-        //     (void)system(mkdir_command.c_str()); // 创建文件夹
-        // }
-
         // 创建文件名
         std::stringstream filename;
         std::string currentTime = getCurrentTimeForFilename();
-        filename << experimentDir << "/" << date_folder << "/" << currentTime << "_" << std::defaultfloat << udp_data.lat << "_" << udp_data.lng << ".jpg";
+        filename << date_folder << "/" << currentTime << "_" << std::defaultfloat << udp_data.lat << "_" << udp_data.lng << ".jpg";
         log_message(INFO, "Saving image as " + filename.str());
 
         // 保存图像
         cv::imwrite(filename.str(), img);
-
+        log_message(INFO, "Flight attitude: :(yaw: " + std::to_string(udp_data.yaw) + "; pitch: " + std::to_string(udp_data.pitch) + "; roll: " + std::to_string(udp_data.roll));
         log_message(INFO, "Predict position(UTM): (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
         double lat, lon;
         utm_to_latlon(best_position.first, best_position.second, 50, true, lat, lon);

@@ -53,7 +53,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # 创建一个可执行文件
 add_executable(${PROJECT_NAME}
-    src/main.cc src/utils.cc src/preprocess.cc src/load_database.cc src/postprocess.cc 
+    src/main_mjpeg.cc src/utils.cc src/preprocess.cc src/load_database.cc src/postprocess.cc 
 )
 
 # 指定工程需要链接的库文件

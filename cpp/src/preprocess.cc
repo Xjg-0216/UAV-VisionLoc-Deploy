@@ -163,7 +163,8 @@ cv::Mat VideoPrerocess(const cv::Mat& img, float contrastFactor, float roll, flo
     cv::warpPerspective(img, adjustedImage, matrix, img.size());
 
     // Center crop
-    adjustedImage = centerCrop(adjustedImage, 512, 512);
+    // adjustedImage = centerCrop(adjustedImage, 512, 512);
+    cv::resize(adjustedImage, adjustedImage, cv::Size(512, 512));
 
     // Convert to grayscale
     cv::Mat gray;

@@ -1,1 +1,1 @@
-/home/xujg/code/UAV-VisionLoc-Deploy/cpp/install/UAV-VisionLoc-C_Linux/UAV-VisionLoc-C /home/xujg/code/UAV-VisionLoc-Deploy/cpp/config.yaml
+/home/xujg/UAV-VisionLoc-Deploy/cpp/install/UAV-VisionLoc-C_Linux/UAV-VisionLoc-C /home/xujg/UAV-VisionLoc-Deploy/cpp/config.yaml
