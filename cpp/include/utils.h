@@ -29,7 +29,6 @@ struct Config {
     std::string database_path;
     std::string udp_net;
     int udp_port;
-    int fps;
 };
 
 int read_data_from_file(const char *path, char **out_data);

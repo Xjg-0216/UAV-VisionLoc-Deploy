@@ -200,12 +200,20 @@ void latLonToUTM(double latitude, double longitude, double& easting, double& nor
     double C = e1sq * pow(cos(latRad), 2);
     double A = cos(latRad) * (lonRad - lonOriginRad);
 
+    // 计算梅尔卡托投影弧长M
+    double M = a * ((1 - e * e / 4 - 3 * e * e * e * e / 64 - 5 * e * e * e * e * e * e / 256) * latRad
+                - (3 * e * e / 8 + 3 * e * e * e * e / 32 + 45 * e * e * e * e * e * e / 1024) * sin(2 * latRad)
+                + (15 * e * e * e * e / 256 + 45 * e * e * e * e * e * e / 1024) * sin(4 * latRad)
+                - (35 * e * e * e * e * e * e / 3072) * sin(6 * latRad));
+
     // 计算 UTM 东坐标 (Easting)
     easting = k0 * N * (A + (1 - T + C) * pow(A, 3) / 6
                       + (5 - 18 * T + T * T + 72 * C - 58 * e1sq) * pow(A, 5) / 120) + 500000.0;
 
     // 计算 UTM 北坐标 (Northing)
-    northing = k0 * N * (latRad + (1 - T + C) * pow(A, 2) / 2 + (5 - 4 * T + 6 * C) * pow(A, 4) / 24);
+    northing = k0 * (M + N * tan(latRad) * (pow(A, 2) / 2
+                     + (5 - T + 9 * C + 4 * C * C) * pow(A, 4) / 24
+                     + (61 - 58 * T + T * T + 600 * C - 330 * e1sq) * pow(A, 6) / 720));
 
     if (latitude < 0) {
         northing += 10000000.0; // 南半球的偏移量
@@ -236,10 +244,12 @@ std::string getCurrentTimeForFilename()
     // 将 time_t 转换为 tm 结构
     std::tm *tm_info = std::localtime(&now_time);
 
+    // 获取毫秒部分
+    auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
     // 使用字符串流来格式化时间
     std::ostringstream oss;
     oss << std::put_time(tm_info, "%H-%M-%S"); // 格式为 "HH-MM-SS"
-
+    oss << '-' << std::setfill('0') << std::setw(3) << milliseconds.count(); // 添加毫秒部分
     return oss.str();
 }
 

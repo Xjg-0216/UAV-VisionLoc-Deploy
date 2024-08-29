@@ -1,0 +1,4 @@
+[INFO][Thu Aug 29 15:48:07 2024] Log file initialized.
+[INFO][Thu Aug 29 15:48:07 2024] Program started.
+[INFO][Thu Aug 29 15:48:07 2024] Model path: /home/xujg/code/UAV-VisionLoc-Deploy/cpp/install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn, Database path: /home/xujg/code/UAV-VisionLoc-Deploy/cpp/install/UAV-VisionLoc-C_Linux/model/database_features.h5
+[ERROR][Thu Aug 29 15:48:07 2024] Failed to find UVC device.

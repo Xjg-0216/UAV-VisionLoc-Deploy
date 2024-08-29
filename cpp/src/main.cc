@@ -152,7 +152,6 @@ int main(int argc, char **argv)
     //解析日志文件
     std::string filename = argv[1];
     Config config = parseConfig(filename);
-
     std::string experimentDir;
     // createNewExperimentDir(experimentDir);
     int i = 1;
@@ -271,6 +270,8 @@ int main(int argc, char **argv)
 
     int vendor_id = 0x2bdf;
     int product_id = 0x0102;
+    // int vendor_id = 0x05a3;
+    // int product_id = 0x9230;
     res = uvc_find_device(ctx, &dev, vendor_id, product_id, NULL);
     if (res < 0)
     {
@@ -290,6 +291,7 @@ int main(int argc, char **argv)
     log_message(DEBUG, "UVC device opened successfully.");
 
     res = uvc_get_stream_ctrl_format_size(devh, &ctrl, UVC_FRAME_FORMAT_YUYV, 640, 512, 30);
+    // res = uvc_get_stream_ctrl_format_size(devh, &ctrl, UVC_FRAME_FORMAT_YUYV, 640, 480, 30);
     if (res < 0)
     {
         log_message(ERROR, "Failed to get stream control format size.");
@@ -343,7 +345,7 @@ int main(int argc, char **argv)
     std::thread udp_thread(receive_udp_data, udp_sock);
 
     // 创建日期文件夹
-    std::string date_folder = getCurrentTimeString();
+    std::string date_folder = experimentDir + "/" + getCurrentTimeString();
     struct stat st;
     if (stat(date_folder.c_str(), &st) != 0)
     {
@@ -410,46 +412,33 @@ int main(int argc, char **argv)
         std::chrono::duration<double, std::milli> elapsed3 = end3 - end2;
         log_message(DEBUG, "Postprocess time: " + std::to_string(elapsed3.count()) + " ms");
 
-        // // 获取当前时间
-        // auto now = std::chrono::system_clock::now();
-        // std::time_t now_time = std::chrono::system_clock::to_time_t(now);
-        // std::tm *tm_info = std::localtime(&now_time);
-
-        // // 格式化日期和时间为字符串
-        // char date_buffer[80], time_buffer[80];
-        // std::strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", tm_info); // 获取日期
-
-        // // 创建日期文件夹
-        // std::string date_folder = date_buffer;
-        // struct stat st;
-        // if (stat(date_folder.c_str(), &st) != 0)
-        // {
-        //     std::string mkdir_command = "mkdir -p " + date_folder;
-        //     (void)system(mkdir_command.c_str()); // 创建文件夹
-        // }
-
         // 创建文件名
         std::stringstream filename;
         std::string currentTime = getCurrentTimeForFilename();
-        filename << experimentDir << "/" << date_folder << "/" << currentTime << "_" << std::defaultfloat << udp_data.lat << "_" << udp_data.lng << ".jpg";
+        filename << date_folder << "/" << currentTime << "_" << std::defaultfloat << udp_data.lat << "_" << udp_data.lng << ".jpg";
         log_message(INFO, "Saving image as " + filename.str());
 
         // 保存图像
         cv::imwrite(filename.str(), img);
-
-        log_message(INFO, "Predict position(UTM): (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
+        // log_message(INFO, "Flight attitude: :(yaw: " + std::to_string(udp_data.yaw) + "; pitch: " + std::to_string(udp_data.pitch) + "; roll: " + std::to_string(udp_data.roll) + "; height: " +std::to_string(udp_data.height) + ")");
+        // log_message(INFO, "Predict position(UTM): (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
         double lat, lon;
-        utm_to_latlon(best_position.first, best_position.second, 50, true, lat, lon);
-        log_message(INFO, "Predict position: (" + std::to_string(lat) + ", " + std::to_string(lon) + ")");
-        log_message(INFO, "Real position: (" + std::to_string(udp_data.lat) + ", " + std::to_string(udp_data.lng) + ")");
+        // utm_to_latlon(best_position.first, best_position.second, 50, true, lat, lon);
+        // log_message(INFO, "Predict position: (" + std::to_string(lat) + ", " + std::to_string(lon) + ")");
+        // log_message(INFO, "Real position: (" + std::to_string(udp_data.lat) + ", " + std::to_string(udp_data.lng) + ")");
 
         // 添加真实的UTM
         double easting, northing;
         latLonToUTM(udp_data.lat, udp_data.lng, easting, northing);
-        log_message(INFO, "Real position(UTM): (" + std::to_string(easting) + ", " + std::to_string(northing) + ")");
+        // log_message(INFO, "Real position(UTM): (" + std::to_string(easting) + ", " + std::to_string(northing) + ")");
 
         // 释放输出
         rknn_outputs_release(context, 1, output);
+
+        log_message(INFO, "Flight attitude: :(yaw: " + std::to_string(udp_data.yaw) + "; pitch: " + std::to_string(udp_data.pitch) + "; roll: " + std::to_string(udp_data.roll) + "; height: " +std::to_string(udp_data.height) + ")");
+        log_message(INFO, "Predict position(UTM): (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
+        log_message(INFO, "Real position(UTM): (" + std::to_string(easting) + ", " + std::to_string(northing) + ")");
+        log_message(INFO, "Real position: (" + std::to_string(udp_data.lat) + ", " + std::to_string(udp_data.lng) + ")");
     }
 
     // 停止摄像头和UDP接收线程
