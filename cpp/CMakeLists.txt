@@ -53,7 +53,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # 创建一个可执行文件
 add_executable(${PROJECT_NAME}
-    src/main_mjpeg.cc src/utils.cc src/preprocess.cc src/load_database.cc src/postprocess.cc 
+    src/main.cc src/utils.cc src/preprocess.cc src/load_database.cc src/postprocess.cc 
+    # src/demo.cc src/preprocess.cc src/load_database.cc src/postprocess.cc 
+
 )
 
 # 指定工程需要链接的库文件
@@ -74,5 +76,5 @@ install(TARGETS ${PROJECT_NAME} DESTINATION ./)
 # install(DIRECTORY ./model DESTINATION ./)
 install(FILES ${CMAKE_SOURCE_DIR}/../model/uvl_v0807.rknn DESTINATION ./model)
 install(FILES ${CMAKE_SOURCE_DIR}/../data/database/database_features.h5 DESTINATION ./model)
-install(FILES ${CMAKE_SOURCE_DIR}/../data/queries/@437073@4220795@0.023907@0.027543@-0.013408@381.7430114746@35075@.jpg DESTINATION ./model)
+install(FILES ${CMAKE_SOURCE_DIR}/../data/queries/@437699@4220766@0.039905@-0.181601@-0.018296@0@0@.jpg DESTINATION ./model)
 install(PROGRAMS ${RKNN_RT_LIB} DESTINATION lib)

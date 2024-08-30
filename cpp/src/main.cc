@@ -30,7 +30,7 @@ std::atomic<bool> image_ready(false);
 std::atomic<bool> udp_data_ready(false);
 std::atomic<bool> stop_threads(false); // 用于停止线程的标志
 
-void capture_camera(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
+void capture_camera_jpeg(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
 {
     log_message(INFO, "Starting camera capture thread...");
 
@@ -102,6 +102,90 @@ void capture_camera(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
 }
 
 
+void capture_camera_yuyv(uvc_device_handle_t *devh, uvc_stream_ctrl_t ctrl)
+{
+    log_message(INFO, "Starting camera capture thread...");
+
+    uvc_stream_handle_t *stream_handle;
+    uvc_error_t res;
+
+    // 打开视频流
+    res = uvc_stream_open_ctrl(devh, &stream_handle, &ctrl);
+    if (res != UVC_SUCCESS)
+    {
+        uvc_perror(res, "uvc_stream_open_ctrl");
+        return;
+    }
+    log_message(DEBUG, "Video stream opened successfully.");
+
+    // 启动视频流
+    res = uvc_stream_start(stream_handle, nullptr, nullptr, 0);
+    if (res != UVC_SUCCESS)
+    {
+        uvc_perror(res, "uvc_stream_start");
+        uvc_stream_close(stream_handle);
+        return;
+    }
+    log_message(DEBUG, "Video stream started successfully.");
+
+    while (!stop_threads.load())
+    {
+        uvc_frame_t *frame;
+        res = uvc_stream_get_frame(stream_handle, &frame, 10000); // 10秒超时
+        if (res != UVC_SUCCESS)
+        {
+            log_message(DEBUG, "Failed to get frame from video stream.");
+            // uvc_perror(res, "uvc_stream_get_frame");
+
+            continue;
+        }
+        log_message(DEBUG, "Frame captured from camera.");
+
+        // 确保在多线程环境中使用互斥锁保护共享资源
+        std::lock_guard<std::mutex> lock(mtx);
+
+        // 将帧转换为BGR格式
+        uvc_frame_t *bgr = uvc_allocate_frame(frame->width * frame->height * 3);
+        if (!bgr)
+        {
+            std::cerr << "Unable to allocate bgr frame!" << std::endl;
+            continue;
+        }
+
+        res = uvc_any2bgr(frame, bgr);
+        if (res != UVC_SUCCESS)
+        {
+            log_message(WARN, "Failed to convert frame to BGR format.");
+            uvc_perror(res, "uvc_any2bgr");
+            uvc_free_frame(bgr);
+            continue;
+        }
+
+        // 使用OpenCV显示图像
+        latest_image = cv::Mat(cv::Size(bgr->width, bgr->height), CV_8UC3, bgr->data).clone();
+        image_ready = true;
+        uvc_free_frame(bgr);
+        log_message(DEBUG, "Frame cloned to OpenCV Mat and ready for processing.");
+
+        // 通知数据已准备好
+        data_condition.notify_all();
+    }
+
+    // 停止视频流
+    uvc_stream_stop(stream_handle);
+    log_message(DEBUG, "Video stream stopped.");
+
+    // 关闭视频流
+    uvc_stream_close(stream_handle);
+    log_message(DEBUG, "Video stream handle closed.");
+
+    // 关闭设备句柄
+    uvc_close(devh);
+    log_message(DEBUG, "Camera device handle closed.");
+}
+
+
+
 void receive_udp_data(int sock)
 {
     log_message(INFO, "Starting UDP receive thread...");
@@ -143,7 +227,6 @@ int main(int argc, char **argv)
     std::string filename = argv[1];
     Config config = parseConfig(filename);
     std::string experimentDir;
-    // createNewExperimentDir(experimentDir);
     int i = 1;
     std::string baseDir;
     std::string newDir;
@@ -226,9 +309,7 @@ int main(int argc, char **argv)
     log_message(DEBUG, "RKNN context initialized successfully.");
 
     // 设置NPU核心使用多个核心
-    rknn_core_mask core_mask = RKNN_NPU_CORE_0_1_2;
-    // rknn_core_mask core_mask = RKNN_NPU_CORE_0;
-    ret = rknn_set_core_mask(context, core_mask);
+    ret = rknn_set_core_mask(context, config.core_mask);
     if (ret < 0)
     {
         log_message(ERROR, "Failed to set RKNN core mask!");
@@ -251,11 +332,7 @@ int main(int argc, char **argv)
     }
     log_message(DEBUG, "UVC context initialized successfully.");
 
-    // int vendor_id = 0x2bdf;
-    // int product_id = 0x0102;
-    int vendor_id = 0x05a3;
-    int product_id = 0x9230;
-    res = uvc_find_device(ctx, &dev, vendor_id, product_id, NULL);
+    res = uvc_find_device(ctx, &dev, config.vendor_id, config.product_id, NULL);
     if (res < 0)
     {
         log_message(ERROR, "Failed to find UVC device.");
@@ -272,9 +349,9 @@ int main(int argc, char **argv)
         return res;
     }
     log_message(DEBUG, "UVC device opened successfully.");
-
-    // res = uvc_get_stream_ctrl_format_size(devh, &ctrl, UVC_FRAME_FORMAT_YUYV, 640, 512, 30);
-    res = uvc_get_stream_ctrl_format_size(devh, &ctrl, UVC_FRAME_FORMAT_MJPEG, 640, 480, 30);
+    
+    
+    res = uvc_get_stream_ctrl_format_size(devh, &ctrl, config.cam_format, config.cam_width, config.cam_height, config.cam_framerate);
     if (res < 0)
     {
         log_message(ERROR, "Failed to get stream control format size.");
@@ -284,7 +361,10 @@ int main(int argc, char **argv)
     log_message(DEBUG, "Stream control format size obtained successfully.");
 
     // 启动摄像头捕获线程
-    std::thread camera_thread(capture_camera, devh, ctrl);
+
+    std::thread camera_thread(capture_camera_jpeg, devh, ctrl);
+    
+
     // 配置UDP
     int udp_sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (udp_sock < 0)
@@ -358,7 +438,7 @@ int main(int argc, char **argv)
         cv::Mat image = VideoPrerocess(img, 3, udp_data.roll, udp_data.pitch, udp_data.yaw); // 预处理图像
         auto end1 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double, std::milli> elapsed1 = end1 - start1;
-        log_message(DEBUG, "Preprocess time: " + std::to_string(elapsed1.count()) + " ms");
+        log_message(INFO, "Preprocess time: " + std::to_string(elapsed1.count()) + " ms");
 
         // 设置RKNN输入
         rknn_input input[1];
@@ -386,35 +466,37 @@ int main(int argc, char **argv)
         float32_t *result = (float32_t *)output[0].buf;
         auto end2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double, std::milli> elapsed2 = end2 - end1;
-        log_message(DEBUG, "Inference time: " + std::to_string(elapsed2.count()) + " ms");
+        log_message(INFO, "Inference time: " + std::to_string(elapsed2.count()) + " ms");
 
         // 后处理
         int use_best_n = 1; // 使用最相似的前N个结果
         std::pair<float32_t, float32_t> best_position = post_process(index, result, database, use_best_n);
         auto end3 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double, std::milli> elapsed3 = end3 - end2;
-        log_message(DEBUG, "Postprocess time: " + std::to_string(elapsed3.count()) + " ms");
+        log_message(INFO, "Postprocess time: " + std::to_string(elapsed3.count()) + " ms");
 
         // 创建文件名
         std::stringstream filename;
         std::string currentTime = getCurrentTimeForFilename();
-        filename << date_folder << "/" << currentTime << "_" << std::defaultfloat << udp_data.lat << "_" << udp_data.lng << ".jpg";
+        filename << date_folder << "/" << currentTime << ".jpg";
         log_message(INFO, "Saving image as " + filename.str());
 
         // 保存图像
         cv::imwrite(filename.str(), img);
-        log_message(INFO, "Flight attitude: :(yaw: " + std::to_string(udp_data.yaw) + "; pitch: " + std::to_string(udp_data.pitch) + "; roll: " + std::to_string(udp_data.roll));
-        log_message(INFO, "Predict position(UTM): (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
         double lat, lon;
-        utm_to_latlon(best_position.first, best_position.second, 50, true, lat, lon);
-        log_message(INFO, "Predict position: (" + std::to_string(lat) + ", " + std::to_string(lon) + ")");
-        log_message(INFO, "Real position: (" + std::to_string(udp_data.lat) + ", " + std::to_string(udp_data.lng) + ")");
 
         // 添加真实的UTM
         double easting, northing;
         latLonToUTM(udp_data.lat, udp_data.lng, easting, northing);
-        log_message(INFO, "Real position(UTM): (" + std::to_string(easting) + ", " + std::to_string(northing) + ")");
 
+        utm_to_latlon(best_position.first, best_position.second, 50, true, lat, lon);
+
+
+        log_message(INFO, "Flight attitude: :(yaw: " + std::to_string(udp_data.yaw) + "; pitch: " + std::to_string(udp_data.pitch) + "; roll: " + std::to_string(udp_data.roll) + "; height: " +std::to_string(udp_data.height) + ")");
+        log_message(INFO, "Predict position(UTM): (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
+        log_message(INFO, "Real position(UTM): (" + std::to_string(easting) + ", " + std::to_string(northing) + ")");
+        log_message(INFO, "Real position: (" + std::to_string(udp_data.lat) + ", " + std::to_string(udp_data.lng) + ")");
+        log_message(INFO, "Predict position: (" + std::to_string(lat) + ", " + std::to_string(lon) + ")");
         // 释放输出
         rknn_outputs_release(context, 1, output);
     }

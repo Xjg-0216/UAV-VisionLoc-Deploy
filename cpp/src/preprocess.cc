@@ -138,8 +138,8 @@ cv::Mat VideoPrerocess(const cv::Mat& img, float contrastFactor, float roll, flo
 
     int height = img.rows;
     int width = img.cols;
-    printf("image height: %d, width:%d\n", height, width);
-    printf("yaw: %f, pitch: %f, roll: %f\n", yaw, pitch, roll);
+    // printf("image height: %d, width:%d\n", height, width);
+    // printf("yaw: %f, pitch: %f, roll: %f\n", yaw, pitch, roll);
     cv::Mat R = eulerToRotationMatrix(roll, pitch, yaw);
     // Define the source points (four corners of the image)
     std::vector<cv::Point2f> srcPoints = {

@@ -14,6 +14,8 @@
 #include <yaml-cpp/yaml.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <libuvc/libuvc.h>
+#include "rknn_api.h"
 #include <cstring> 
 #ifndef UTILS_H_
 #define UTILS_H_
@@ -29,6 +31,13 @@ struct Config {
     std::string database_path;
     std::string udp_net;
     int udp_port;
+    rknn_core_mask core_mask;
+    int vendor_id;
+    int product_id;
+    uvc_frame_format cam_format;
+    int cam_width;
+    int cam_height;
+    int cam_framerate;
 };
 
 int read_data_from_file(const char *path, char **out_data);

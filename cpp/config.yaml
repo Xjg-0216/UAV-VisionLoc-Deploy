@@ -1,6 +1,23 @@
-log_level: DEBUG
+# log
+log_level: INFO
+
+# path
 model_path: /home/xujg/code/UAV-VisionLoc-Deploy/cpp/install/UAV-VisionLoc-C_Linux/model/uvl_v0807.rknn
 database_path: /home/xujg/code/UAV-VisionLoc-Deploy/cpp/install/UAV-VisionLoc-C_Linux/model/database_features.h5
+
+#npu core
+core_mask: RKNN_NPU_CORE_0_1_2 # RKNN_NPU_CORE_AUTO, RKNN_NPU_CORE_0, RKNN_NPU_CORE_1, RKNN_NPU_CORE_2, RKNN_NPU_CORE_0_1
+
+
+# UDP setting
 udp_net: "192.168.1.19"
 udp_port: 12345
 
+# camera
+cam_settings:
+  vendor_id: 0x05a3    # 0x2bdf
+  product_id: 0x9230   # 0x0102
+  cam_format: "UVC_FRAME_FORMAT_MJPEG" # "UVC_FRAME_FORMAT_YUYV"
+  cam_width: 640
+  cam_height: 480 # 512
+  cam_framerate: 30 
