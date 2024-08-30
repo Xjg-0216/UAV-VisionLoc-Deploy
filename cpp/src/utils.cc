@@ -127,51 +127,40 @@ void closeLogFile() {
 
 
 
-// // 常量定义（可以根据不同的参考椭球进行修改）
-constexpr double k0 = 0.9996;
-
-// // WGS84 椭球参数
-constexpr double WGS84_a = 6378137.0; // WGS84 长半轴
-constexpr double WGS84_f = 1.0 / 298.257223563; // WGS84 扁率
-double WGS84_e = std::sqrt(2 * WGS84_f - WGS84_f * WGS84_f); // WGS84 第一偏心率
-
+// WGS84 椭球体参数
+const double WGS84_a = 6378137.0;                // 长半轴
+const double WGS84_e = 0.081819190842622;        // 偏心率
+const double k0 = 0.9996;                        // UTM 投影的尺度因子
+const double e1 = (1 - sqrt(1 - WGS84_e * WGS84_e)) / (1 + sqrt(1 - WGS84_e * WGS84_e)); // e1
 
 void utm_to_latlon(double easting, double northing, int zone, bool is_northern_hemisphere, double& lat, double& lon) {
-    double a = WGS84_a, e = WGS84_e;
-    double e_prime_sq = (e * e) / (1 - e * e);
-    double n = a / std::sqrt(1 - e * e * std::sin(0) * std::sin(0));
-    double t = std::tan(0) * std::tan(0);
-    double c = e_prime_sq * std::cos(0) * std::cos(0);
-    double r = a * (1 - e * e) / std::pow(1 - e * e * std::sin(0) * std::sin(0), 1.5);
-    double d = easting - 500000.0;
+    double e_prime_sq = (WGS84_e * WGS84_e) / (1 - WGS84_e * WGS84_e);
     
     if (!is_northern_hemisphere) {
         northing -= 10000000.0;
     }
     
     double m = northing / k0;
-    double mu = m / (a * (1 - e * e / 4 - 3 * e * e * e * e / 64 - 5 * e * e * e * e * e * e / 256));
+    double mu = m / (WGS84_a * (1 - WGS84_e * WGS84_e / 4.0 - 3 * WGS84_e * WGS84_e * WGS84_e * WGS84_e / 64.0 - 5 * WGS84_e * WGS84_e * WGS84_e * WGS84_e * WGS84_e * WGS84_e / 256.0));
     
-    double phi1_rad = mu + (3 * e / 2 - 27 * e * e * e / 32) * std::sin(2 * mu)
-                        + (21 * e * e / 16 - 55 * e * e * e * e / 32) * std::sin(4 * mu)
-                        + (151 * e * e * e / 96) * std::sin(6 * mu)
-                        + (1097 * e * e * e * e / 512) * std::sin(8 * mu);
+    double phi1_rad = mu + (3 * e1 / 2 - 27 * e1 * e1 * e1 / 32) * sin(2 * mu)
+                        + (21 * e1 * e1 / 16 - 55 * e1 * e1 * e1 * e1 / 32) * sin(4 * mu)
+                        + (151 * e1 * e1 * e1 / 96) * sin(6 * mu);
     
-    n = a / std::sqrt(1 - e * e * std::sin(phi1_rad) * std::sin(phi1_rad));
-    t = std::tan(phi1_rad) * std::tan(phi1_rad);
-    c = e_prime_sq * std::cos(phi1_rad) * std::cos(phi1_rad);
-    r = a * (1 - e * e) / std::pow(1 - e * e * std::sin(phi1_rad) * std::sin(phi1_rad), 1.5);
-    d = d / (n * k0);
+    double n = WGS84_a / sqrt(1 - WGS84_e * WGS84_e * sin(phi1_rad) * sin(phi1_rad));
+    double t = tan(phi1_rad) * tan(phi1_rad);
+    double c = e_prime_sq * cos(phi1_rad) * cos(phi1_rad);
+    double r = WGS84_a * (1 - WGS84_e * WGS84_e) / pow(1 - WGS84_e * WGS84_e * sin(phi1_rad) * sin(phi1_rad), 1.5);
+    double d = (easting - 500000.0) / (n * k0);
     
-    double lat_rad = phi1_rad - (n * std::tan(phi1_rad) / r) * (d * d / 2 
+    double lat_rad = phi1_rad - (n * tan(phi1_rad) / r) * (d * d / 2 
                    - (5 + 3 * t + 10 * c - 4 * c * c - 9 * e_prime_sq) * d * d * d * d / 24
                    + (61 + 90 * t + 298 * c + 45 * t * t - 252 * e_prime_sq - 3 * c * c) * d * d * d * d * d * d / 720);
     lat = lat_rad * (180.0 / M_PI);
     
     double lon_rad = (d - (1 + 2 * t + c) * d * d * d / 6 
-                   + (5 - 2 * c + 28 * t - 3 * c * c + 8 * e_prime_sq + 24 * t * t) * d * d * d * d * d / 120) / std::cos(phi1_rad);
-    lon = lon_rad * (180.0 / M_PI) + (zone > 0 ? (zone * 6 - 183) : 3);
-    
+                   + (5 - 2 * c + 28 * t - 3 * c * c + 8 * e_prime_sq + 24 * t * t) * d * d * d * d * d / 120) / cos(phi1_rad);
+    lon = lon_rad * (180.0 / M_PI) + (zone * 6 - 183);
 }
 
 const double pi = 3.14159265358979323846;

@@ -194,14 +194,6 @@ int main(int argc, char **argv)
 
     log_message(INFO, "Program started.");
 
-    
-
-    // if (argc != 3)
-    // {
-    //     log_message(ERROR, "Usage error: Not enough arguments provided.");
-    //     std::cerr << "Usage: " << argv[0] << " <model_path> <database_path>" << std::endl;
-    //     return -1;
-    // }
     const char* model_path = config.model_path.c_str(); 
     const char* database_path = config.database_path.c_str();
     const char* udp_net = config.udp_net.c_str();
@@ -423,7 +415,7 @@ int main(int argc, char **argv)
         // log_message(INFO, "Flight attitude: :(yaw: " + std::to_string(udp_data.yaw) + "; pitch: " + std::to_string(udp_data.pitch) + "; roll: " + std::to_string(udp_data.roll) + "; height: " +std::to_string(udp_data.height) + ")");
         // log_message(INFO, "Predict position(UTM): (" + std::to_string(best_position.first) + ", " + std::to_string(best_position.second) + ")");
         double lat, lon;
-        // utm_to_latlon(best_position.first, best_position.second, 50, true, lat, lon);
+        utm_to_latlon(best_position.first, best_position.second, 50, true, lat, lon);
         // log_message(INFO, "Predict position: (" + std::to_string(lat) + ", " + std::to_string(lon) + ")");
         // log_message(INFO, "Real position: (" + std::to_string(udp_data.lat) + ", " + std::to_string(udp_data.lng) + ")");
 
